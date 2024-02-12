@@ -1,0 +1,295 @@
+<!--DOCTYPE html-->
+<html lang="en" ng-app="myApp">
+
+<head>
+    
+    <meta charset="utf-8"/>
+    <title>Startup - Clients</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="Free HTML Templates" name="keywords"/>
+    <meta content="Free HTML Templates" name="description"/>
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon"/>
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
+    <link href="lib/animate/animate.min.css" rel="stylesheet"/>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <div ng-controller="agenceController">
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative p-0" >
+
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="/" class="navbar-brand p-0">
+                <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Logo</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a th:href="@{/agences}" class="nav-item nav-link">Agences</a>
+                    <a th:href="@{/clients}" class="nav-item nav-link">Clients</a>                    
+                    <a th:href="@{/utilisateurs}" class="nav-item nav-link">Utilisateurs</a>
+                </div>
+                <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>                
+            </div>
+        </nav>        
+
+        <div class="container-fluid bg-primary bg-header" >
+            <div class="row">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">Liste des clients</h1>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Pricing Plan Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">            
+            <div class="row g-0">
+                
+                <div class="col-lg-12 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">LISTE 
+                            <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
+                                Ajouter un client
+                            </button></h4>
+                            <!-- <small class="text-uppercase">Liste des clients -->
+                            </small>
+                            
+                        </div>
+                        <div class="p-5 pt-3">
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Nom</th>
+                                        <th>adresse</th>
+                                        <th>Ville</th>
+                                        <th>localisation</th>
+                                        <th>Actions {{listeAgences.length}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr ng-if="listeAgences !== undefined && listeAgences.length > 0" ng-repeat="agence in listeAgences track by $index">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{agence.nom}}</td>
+                                        <td>{{egence.adresse}}</td>
+                                        <td>{{agence.ville}}</td>
+                                        <td>{{agence.localisation}}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary">Modifier</button>
+                                            <button class="btn btn-sm btn-danger">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Index</th>
+                                        <th>Nom</th>
+                                        <th>adresse</th>
+                                        <th>Ville</th>
+                                        <th>localisation</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Plan End -->
+
+
+  <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Nouveau client</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form ng-submit="valider()" action="#" method="POST" enctype="multipart/form-data">
+                    <div class="control">
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-control select" id="agence" name="agence" ng-model="agenceMasterDTO.agence"> 
+                                        <option value="">Selectionnez une Agence</option>
+                                        <option value="">Selectionnez une Agence</option>
+                                        <option value="">Selectionnez une Agence</option>
+                                    </select>
+                                    <label for="agence">Agence</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input ng-model="agenceMasterDTO.numero_op" name="numero_op" type="text" class="form-control"  id="numero_op" placeholder="Numero OP" value=""  autofocus>
+                                    <label for="numero_op">Numero OP</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input ng-model="agenceMasterDTO.banque" name="banque" type="text" class="form-control  "  id="banque" placeholder="Banque" value=""  autofocus>
+                                    <label for="banque">Banque</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input ng-model="agenceMasterDTO.caisse" name="caisse" type="text" class="form-control"  id="caisse" placeholder="Caisse" value=""  autofocus>
+                                    <label for="caisse">Caisse</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input ng-model="agenceMasterDTO.zone" name="zone" type="text" class="form-control"  id="zone" placeholder="Zone" value=""  autofocus>
+                                    <label for="zone">Zone</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control  "  id="localisation" placeholder="Localisation" value=""  autofocus>
+                                    <label for="localisation">Localisation</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                </div>
+                    
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success me-10" data-dismiss="modal">Enregistrer</button>
+                <button type="reset" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+            </div>
+                
+            </div>
+            
+
+            
+        </div>
+    </div>
+
+
+    <!-- Quote Start -->
+    
+    <!-- Vendor End -->
+    
+
+    <!-- Footer Start -->
+    
+    <div class="container-fluid text-white" style="background: #061429;">
+        <div class="container text-center">
+            <div class="row justify-content-end">
+                <div class="col-lg-8 col-md-6">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"> Site Name</a>. All Rights Reserved. 
+						
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						Designed by <a class="text-white border-bottom" href="#">Next Generation Services</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+</div>
+
+   
+    <!-- JavaScript Libraries -->
+    {% comment %} <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/agenceController.js"></script>
+    <script src="js/main.js"></script>
+
+    <script >
+        new DataTable('#example');
+
+    </script>
+</body>
+
+</html>
