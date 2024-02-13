@@ -12,8 +12,37 @@ import com.example.project.repositories.AgenceRepository;
 
 @Service
 public class AgenceService {
+
+    private final AgenceRepository agenceRepository;
+
     @Autowired
-    public AgenceRepository agenceRepository;
+    public AgenceService(AgenceRepository agenceRepository) {
+        this.agenceRepository = agenceRepository;
+    }
+
+    public List<Agence> getAllAgences() {
+        return agenceRepository.findAll();
+    }
+
+    public Agence getAgenceById(Long id) {
+        return agenceRepository.findById(id).orElse(null);
+    }
+
+    public Agence createAgence(Agence agence) {
+        return agenceRepository.save(agence);
+    }
+
+    public Agence updateAgence(Long id, Agence agence) {
+        if (agenceRepository.existsById(id)) {
+            agence.setId(id);
+            return agenceRepository.save(agence);
+        }
+        return null;
+    }
+
+    public void deleteAgence(Long id) {
+        agenceRepository.deleteById(id);
+    }
 
     public List<AgenceDTO> listeAgences() {
         List<AgenceDTO> agenceDTOList = new ArrayList<>();
@@ -41,4 +70,7 @@ public class AgenceService {
 
         return agenceDTO;
     }
+
+
+
 }
