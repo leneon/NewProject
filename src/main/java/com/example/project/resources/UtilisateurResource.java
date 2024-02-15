@@ -24,22 +24,22 @@ public class UtilisateurResource {
         return utilisateurService.getAllUtilisateurs();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public Utilisateur getUtilisateurById(@PathVariable Long id) {
         return utilisateurService.getUtilisateurById(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
         return utilisateurService.createUtilisateur(utilisateur);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Utilisateur updateUtilisateur(@PathVariable Long id, @RequestBody Utilisateur utilisateur) {
         return utilisateurService.updateUtilisateur(id, utilisateur);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteUtilisateur(@PathVariable Long id) {
         utilisateurService.deleteUtilisateur(id);
     }

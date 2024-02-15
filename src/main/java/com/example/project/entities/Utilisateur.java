@@ -12,6 +12,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="utilisateurs")
 public class Utilisateur {
+    public Utilisateur() {
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column
