@@ -60,9 +60,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a th:href="@{/agences}" class="nav-item nav-link">Agences</a>
+                    <a th:href="@{/agences}" class="nav-item nav-link ">Agences</a>
                     <a th:href="@{/clients}" class="nav-item nav-link">Clients</a>                    
-                    <a th:href="@{/utilisateurs}" class="nav-item nav-link">Utilisateurs</a>
+                    <a th:href="@{/utilisateurs}" class="nav-item nav-link active">Utilisateurs</a>
+                    <div class="dropdown nav-item nav-link">
+                        <a th:href="@{/}" class="dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Abattements
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="abattements">Liste des abatements</a></li>
+                            <li><a class="dropdown-item" href="parametres">Effectuer un abattements</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="parametres">Gestions des Paramètres</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>                
             </div>

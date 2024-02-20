@@ -63,19 +63,17 @@
                     <a th:href="@{/agences}" class="nav-item nav-link">Agences</a>
                     <a th:href="@{/clients}" class="nav-item nav-link">Clients</a>                    
                     <a th:href="@{/utilisateurs}" class="nav-item nav-link">Utilisateurs</a>
-                    <a th:href="@{/parametres}" class="nav-item nav-link">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                              Menu
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <li><a class="dropdown-item" href="#">Action 1</a></li>
-                              <li><a class="dropdown-item" href="#">Action 2</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                            </ul>
-                          </div>
-                    </a>
+                    <div class="dropdown nav-item nav-link active">
+                        <a th:href="@{/}" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Abattements
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="abattements">Liste des abatements</a></li>
+                            <li><a class="dropdown-item" href="parametres">Effectuer un abattements</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="parametres">Gestions des Paramètres</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>                
             </div>
@@ -193,7 +191,7 @@
                             </div>
                             
                         </div>
-                        <div class="row  mb-2">
+                        <div class="row g-2 mb-2">
                             <div class="col-md">
                                 <div class="form-floating">
                                     <select class="form-control select" id="type" name="type" ng-model="parametreMasterDTO.type"> 
@@ -204,13 +202,11 @@
 
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="row mb-2">
+                      
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input name="valeur" type="numeric" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreMasterDTO.valeur"  autofocus>
-                                    <label for="valeur">Valeur appliqué</label>
+                                    <input name="valeur" type="number" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreMasterDTO.valeur"  autofocus>
+                                    <label for="valeur">Valeur appliqué en pourcentage</label>
                                 </div>
                             </div>
                            
