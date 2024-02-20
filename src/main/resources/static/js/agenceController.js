@@ -44,6 +44,8 @@ App.controller('agenceController', ['$scope','$http', function ($scope,$http) {
                     $scope.loadAgences();
                     // Réinitialisez l'objet agenceMasterDTO après la création
                     $scope.agenceMasterDTO = { id: null, nom: null, adresse: null, ville: null, localisation: null };
+                    $scope.modalHide();
+                    $scope.successSwal("Agence ajouter avec succès.");
                 },
                 function (error) {
                     console.log("ERREUR DE CREATION DE L'AGENCE : ", error);
@@ -62,6 +64,7 @@ App.controller('agenceController', ['$scope','$http', function ($scope,$http) {
                     // Réinitialisez l'objet agenceDTO après la mise à jour
                     $scope.agenceMasterDTO = { id: null, nom: null, adresse: null, ville: null, localisation: null };
                     $scope.modalHide();
+                    $scope.successSwal("Agence modifier avec succès.");
                 },
                 function (error) {
                     console.log("ERREUR DE MISE A JOUR DE L'AGENCE : ", error);
@@ -128,12 +131,7 @@ $scope.deleteAgence = function (id) {
         // Vérifiez si les champs requis sont remplis
         if (!$scope.agenceMasterDTO.nom || !$scope.agenceMasterDTO.adresse || !$scope.agenceMasterDTO.ville || !$scope.agenceMasterDTO.localisation) {
             console.log("Veuillez remplir tous les champs obligatoires.");
-            swal({
-                title: "Erreur",
-                text: "Veuillez remplir tous les champs obligatoires.!",
-                icon: "error",
-                button: "OK!",
-              });
+            $scope.errorSwal("Veuillez remplir tous les champs obligatoires.!");
             return;
         }
 
@@ -146,6 +144,24 @@ $scope.deleteAgence = function (id) {
         }
     };
 
+
+    $scope.successSwal = function(string){
+        swal({
+            title: "Succès",
+            text: string,
+            icon: "success",
+            button: "OK!",
+          });
+    };
+    $scope.errorSwal = function(string){
+        swal({
+            title: "Erreur",
+            text: string,
+            icon: "error",
+            button: "OK!",
+          });
+    };
+    
     $scope.modalShow = function(){
         $('#myModal').modal('show');
     };

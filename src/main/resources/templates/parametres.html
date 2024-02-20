@@ -4,7 +4,7 @@
 <head>
     
     <meta charset="utf-8"/>
-    <title>Startup - Utilisateurs</title>
+    <title>Startup - Paramètres</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="Free HTML Templates" name="keywords"/>
     <meta content="Free HTML Templates" name="description"/>
@@ -63,6 +63,19 @@
                     <a th:href="@{/agences}" class="nav-item nav-link">Agences</a>
                     <a th:href="@{/clients}" class="nav-item nav-link">Clients</a>                    
                     <a th:href="@{/utilisateurs}" class="nav-item nav-link">Utilisateurs</a>
+                    <a th:href="@{/parametres}" class="nav-item nav-link">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                              Menu
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#">Action 1</a></li>
+                              <li><a class="dropdown-item" href="#">Action 2</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                            </ul>
+                          </div>
+                    </a>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>                
             </div>
@@ -71,7 +84,7 @@
         <div class="container-fluid bg-primary bg-header" >
             <div class="row">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Liste des Utilisateurs</h1>
+                    <h1 class="display-4 text-white animated zoomIn">Liste des paramètres</h1>
                    
                 </div>
             </div>
@@ -100,7 +113,7 @@
 
 
     <!-- Pricing Plan Start -->
-    <div ng-controller="utilisateurController"  class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div ng-controller="parametreController"  class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">            
             <div class="row g-0">
                 
@@ -109,9 +122,9 @@
                         <div class="border-bottom py-4 px-5 mb-4">
                             <h4 class="text-primary mb-1">LISTE 
                             <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
-                                Ajouter un Utilisateur
+                                Ajouter une paramètre
                             </button></h4>
-                            <!-- <small class="text-uppercase">Liste des Utilisateurs -->
+                            <!-- <small class="text-uppercase">Liste des parametres -->
                             </small>
                             
                         </div>
@@ -120,39 +133,30 @@
                                 <thead>
                                     <tr>
                                         <th>Index</th>
-                                        <th>Nom utilisateur</th>
-                                        <th>Nom</th>
-                                        <th>Prénoms</th>
-                                        <th>Agence</th>
-                                        <th>Téléphone</th>
-                                        <th>E-mail</th>
+                                        <th>Titre</th>
+                                        <th>Type</th>
+                                        <th>Valeur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="utilisateur in listeUtilisateurs track by $index">
+                                    <tr ng-repeat="parametre in listeParametres track by $index">
                                         <td>{{$index+1}}</td>
-                                        <td>{{utilisateur.username}}</td>
-                                        <td>{{utilisateur.nom}}</td>
-                                        <td>{{utilisateur.prenom}}</td>
-                                        <td>{{utilisateur.agence.nom}}</td>
-                                        <td>{{utilisateur.telephone}}</td>
-                                        <td>{{utilisateur.email}}</td>
+                                        <td>{{parametre.titre}}</td>
+                                        <td>{{parametre.type}}</td>
+                                        <td>{{parametre.valeur}}</td>
                                         <td >
-                                            <button class="btn btn-sm btn-secondary" ng-click="findUtilisateurById(utilisateur.id)"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-sm btn-danger" ng-click="deleteUtilisateur(utilisateur.id)"><i class="bi bi-trash"></i></button>
+                                            <button class="btn btn-sm btn-secondary" ng-click="findParametreById(parametre.id)"><i class="bi bi-pencil"></i></button>
+                                            <button class="btn btn-sm btn-danger" ng-click="deleteparametre(parametre.id)"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Index</th>
-                                        <th>Nom utilisateur</th>
-                                        <th>Nom</th>
-                                        <th>Prénoms</th>
-                                        <th>Agence</th>
-                                        <th>Téléphone</th>
-                                        <th>E-mail</th>
+                                        <th>Titre</th>
+                                        <th>Type</th>
+                                        <th>Valeur</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>
@@ -171,7 +175,7 @@
         
             <!-- Modal Header -->
             <div class="modal-header">
-            <h4 class="modal-title">Nouveau utilisateur</h4>
+            <h4 class="modal-title">Nouvelle paramètre</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
@@ -180,55 +184,38 @@
                 <form action="#" method="POST" enctype="multipart/form-data">
                     <div class="control">
 
-                        <div class="row g-2 mb-2">
+                        <div class="row mb-2">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input name="nom" type="text" class="form-control  "  id="nom" placeholder="Nom" required   ng-model="utilisateurMasterDTO.nom"  autofocus>
-                                    <label for="nom">Nom</label>
+                                    <input name="titire" type="text" class="form-control  "  id="titire" placeholder="Titre" required   ng-model="parametreMasterDTO.titire"  autofocus>
+                                    <label for="titire">Titre</label>
                                 </div>
                             </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="prenoms" type="text" class="form-control"  id="prenoms" placeholder="Prénoms" required   ng-model="utilisateurMasterDTO.prenoms"  autofocus>
-                                    <label for="prenoms">Prénoms</label>
-                                </div>
-                            </div>
-
+                            
                         </div>
-                        <div class="row g-2 mb-2">
+                        <div class="row  mb-2">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <select class="form-control select" id="agence" name="agence" ng-model="utilisateurMasterDTO.agence.id"> 
-                                        <option ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
+                                    <select class="form-control select" id="type" name="type" ng-model="parametreMasterDTO.type"> 
+                                        <option value="Montant">Montant</option>
+                                        <option value="Heure">Heure</option>
                                     </select>
-                                    
-                                    <label for="agence">Agence </label>
-                                </div>
-                            </div>
+                                    <label for="type">Type </label>
 
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="username" type="text" class="form-control"  id="username" placeholder="Nom d'utilisateur" required ng-model="utilisateurMasterDTO.username"  autofocus>
-                                    <label for="username">Nom d'utilisateur</label>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row g-2 mb-2">
+                        <div class="row mb-2">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input name="email" type="text" class="form-control"  id="email" placeholder="E-mail" required   ng-model="utilisateurMasterDTO.email"  autofocus>
-                                    <label for="email">E-mail</label>
+                                    <input name="valeur" type="numeric" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreMasterDTO.valeur"  autofocus>
+                                    <label for="valeur">Valeur appliqué</label>
                                 </div>
                             </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="telephone" type="text" class="form-control  "  id="telephone" placeholder="Téléphone" required   ng-model="utilisateurMasterDTO.telephone"  autofocus>
-                                    <label for="telephone">Téléphone</label>
-                                </div>
-                            </div>
+                           
                         </div>
-                        
+                                               
                 </div>
                     
                 </form>
@@ -290,7 +277,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script src="/js/utilisateurController.js"></script>
+    <script src="/js/parametreController.js"></script>
     <script src="/js/main.js"></script>
     <script >
         new DataTable('#example');
