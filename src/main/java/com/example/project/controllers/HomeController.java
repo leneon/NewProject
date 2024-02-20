@@ -25,4 +25,8 @@ public class HomeController {
     public String parametres(){
         return "parametres";
     }
+    @GetMapping("/abattements")
+    public String abattements(){
+        return "inscription";
+    }
 }
