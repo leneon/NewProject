@@ -108,6 +108,10 @@
                     <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
                         <div class="border-bottom py-4 px-5 mb-4">
                             <h4 class="text-primary mb-1">LISTE 
+                            <form method="POST" enctype="multipart/form-data">
+                                <input type="file" id="excelFile" name="excelFile" accept=".xls,.xlsx" />
+                                <button ng-click="importExcel()">Importer Excel</button>
+                            </form>
                             <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
                                 Ajouter un client
                             </button></h4>
