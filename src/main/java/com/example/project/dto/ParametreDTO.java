@@ -5,14 +5,13 @@ public class ParametreDTO {
     private String titre;
     private String type;
     private Float valeur;
-    private Double montant;
 
-    public ParametreDTO(Long id, String titre, String type, Float valeur, Double montant) {
+    
+    public ParametreDTO(Long id, String titre, String type, Float valeur) {
         this.id = id;
         this.titre = titre;
         this.type = type;
         this.valeur = valeur;
-        this.montant = montant;
     }
     public ParametreDTO() {
     }
@@ -37,15 +36,8 @@ public class ParametreDTO {
     public Float getValeur() {
         return valeur;
     }
-    public void setValeur(Float float1) {
-        this.valeur = float1;
+    public void setValeur(Float valeur) {
+        this.valeur = valeur;
     }
-    public Double getMontant() {
-        return montant;
-    }
-    public void setMontant(Double montant) {
-        this.montant = montant;
-    }
-
     
 }

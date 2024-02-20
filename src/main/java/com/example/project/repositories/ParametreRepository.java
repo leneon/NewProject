@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.project.entities.Parametre;
 
-public interface ParametreRepository extends JpaRepository <Parametre, Long>{
+public interface ParametreRepository extends JpaRepository<Parametre, Long>  {
     
 }
