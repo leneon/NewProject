@@ -21,4 +21,8 @@ public class HomeController {
     public String utilisateurs(){
         return "utilisateurs";
     }
+    @GetMapping("/parametres")
+    public String parametres(){
+        return "parametres";
+    }
 }
