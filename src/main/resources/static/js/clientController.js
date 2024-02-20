@@ -191,5 +191,30 @@ $scope.modalShow = function(){
 $scope.modalHide = function(){
     $('#myModal').modal('hide');
 };
+$scope.importExcel = function() {
+    var fileInput = document.getElementById('excelFile');
+    var file = fileInput.files[0];
+
+    var formData = new FormData();
+    formData.append('file', file);
+
+    $http.post('api/clients/import', formData, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+    }).then(
+        function(response) {
+            // Traitement réussi
+            console.log("Données importées avec succès :", response.data);
+            // Actualiser la liste des clients après l'importation
+            $scope.loadClients();
+        },
+        function(error) {
+            // Erreur lors de l'importation
+            console.error("Erreur lors de l'importation :", error);
+        }
+    );
+};
+
+
 }]);
 

@@ -114,8 +114,8 @@ public class Client {
         return agence;
     }
 
-    public void setAgence(Agence agence) {
-        this.agence = agence;
+    public void setAgence(String string) {
+        // this.agence.id = Long (string);
     }
 
 }
