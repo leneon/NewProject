@@ -40,7 +40,7 @@ public class Abattement {
     @Column (name = "total")
     private Double total;
 
-    @OneToMany(mappedBy = "", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "abattement", cascade = CascadeType.ALL)
     private List<AbattementParametre> listAbatttementParametres;
 
     public Abattement(long id, Date date, Client client, Double vente, Double paiement, Double soldeAVerser, Double reg,
