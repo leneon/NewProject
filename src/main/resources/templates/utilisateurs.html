@@ -69,7 +69,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="abattements">Liste des abatements</a></li>
-                            <li><a class="dropdown-item" href="parametres">Effectuer un abattements</a></li>
+                            <li><a class="dropdown-item" href="abattement">Effectuer un abattements</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="parametres">Gestions des Paramètres</a></li>
                         </ul>
@@ -141,7 +141,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="utilisateur in listeUtilisateurs track by $index">
+                                    <tr data-ng-repeat="utilisateur in listeUtilisateurs track by $index">
                                         <td>{{$index+1}}</td>
                                         <td>{{utilisateur.username}}</td>
                                         <td>{{utilisateur.nom}}</td>
@@ -210,7 +210,7 @@
                             <div class="col-md">
                                 <div class="form-floating">
                                     <select class="form-control select" id="agence" name="agence" ng-model="utilisateurMasterDTO.agence.id"> 
-                                        <option ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
+                                        <option data-ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
                                     </select>
                                     
                                     <label for="agence">Agence </label>

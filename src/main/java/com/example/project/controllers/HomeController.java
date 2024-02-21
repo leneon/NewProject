@@ -27,6 +27,10 @@ public class HomeController {
     }
     @GetMapping("/abattements")
     public String abattements(){
-        return "inscription";
+        return "abattements";
+    }
+    @GetMapping("/abattement")
+    public String abattement(){
+        return "abattement";
     }
 }
