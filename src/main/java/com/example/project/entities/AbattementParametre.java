@@ -18,10 +18,10 @@ public class AbattementParametre {
     private long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "abattement", referencedColumnName = "id")
     private Abattement abattement;
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "parametre", referencedColumnName = "id")
     private Parametre parametre;
     @Column
     private String valeur;
