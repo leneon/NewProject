@@ -119,9 +119,9 @@
                     <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
                         <div class="border-bottom py-4 px-5 mb-4">
                             <h4 class="text-primary mb-1">LISTE 
-                            <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
-                                Ajouter une paramètre
-                            </button></h4>
+                            <a href="/abattement" class="btn btn-success float-end" >
+                                Effectuer un abattement
+                            </a></h4>
                             <!-- <small class="text-uppercase">Liste des parametres -->
                             </small>
                             
@@ -151,7 +151,9 @@
                                                     Ab 0.5%
                                                 </div>
                                             </div>
-                                        </th>                                       
+                                        </th>        
+                                        <th>ACtions</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -190,6 +192,8 @@
                                                 </div>
                                             </div>
                                         </th>
+                                        <th>ACtions</th>
+
                                     </tr>
                                 </tfoot>
                             </table>
@@ -229,8 +233,7 @@
                         <div class="row g-2 mb-2">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <select class="form-control select" id="type" name="type" ng-model="parametreDTO
-.type"> 
+                                    <select class="form-control select" id="type" name="type" ng-model="parametreDTO.type"> 
                                         <option value="Montant">Montant</option>
                                         <option value="Heure">Heure</option>
                                     </select>
@@ -241,8 +244,7 @@
                       
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input name="valeur" type="number" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreDTO
-.valeur"  autofocus>
+                                    <input name="valeur" type="number" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreDTO.valeur"  autofocus>
                                     <label for="valeur">Valeur appliqué en pourcentage</label>
                                 </div>
                             </div>

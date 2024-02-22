@@ -82,7 +82,7 @@
         <div class="container-fluid bg-primary bg-header" >
             <div class="row">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Effectuer une nouvelle abatements</h1>
+                    <h1 class="display-4 text-white animated zoomIn">Effectuer un nouveau abatement</h1>
                    
                 </div>
             </div>
@@ -109,139 +109,105 @@
     </div>
     <!-- Full Screen Search End -->
 
-
     <!-- Pricing Plan Start -->
-    <div ng-controller="parametreController"  class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div ng-controller="addController" class="container-fluid  wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">            
             <div class="row g-0">
                 
                 <div class="col-lg-12 wow slideInUp" data-wow-delay="0.3s">
                     <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
                         <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">LISTE 
-                            <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
-                                Ajouter une paramètre
-                            </button></h4>
-                            <!-- <small class="text-uppercase">Liste des parametres -->
-                            </small>
-                            
+                            <h4 class="text-primary mb-1">Abattement</h4>
+                            <small class="text-uppercase">Veuillez remplir le formulaire</small>
                         </div>
                         <div class="p-5 pt-3">
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Index</th>
-                                        <th>Titre</th>
-                                        <th>Type</th>
-                                        <th>Valeur</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-ng-repeat="parametre in listeParametres track by $index">
-                                        <td>{{$index+1}}</td>
-                                        <td>{{parametre.titre}}</td>
-                                        <td>{{parametre.type}}</td>
-                                        <td>Ab {{parametre.valeur}} %</td>
-                                        <td >
-                                            <button class="btn btn-sm btn-secondary" ng-click="findParametreById(parametre.id)"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-sm btn-danger" ng-click="deleteparametre(parametre.id)"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Index</th>
-                                        <th>Titre</th>
-                                        <th>Type</th>
-                                        <th>Valeur</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                            <form>
+                                <div class="row g-3 mb-2">
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <select class="form-control select" id="type" name="type" > 
+                                                <option value="">Choisissez un client</option>
+                                                <option data-ng-repeat="client in listeClients" value="client.id">{{ client.nom }} ({{ client.numeroOp }})</option>
+                                            </select>
+                                            <label for="type">Client (N° OP)  </label>
+        
+                                        </div>
+                                    </div>
+                              
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="date" type="date" class="form-control  "  id="date" placeholder="Date" required  autofocus>
+                                            <label for="date">Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="journee" type="number" class="form-control  "  id="journee" placeholder="Journée" required  autofocus>
+                                            <label for="journee">Journée</label>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row py-2 g-3 mb-2">
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="vente" type="number" class="form-control  "  id="vente" placeholder="Vente" required  autofocus>
+                                            <label for="vente">Vente</label>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="paiement" type="number" class="form-control  "  id="paiement" placeholder="Paiement" required  autofocus>
+                                            <label for="paiement">Paiement</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
+                                            <label for="reste_a_verser">Reste a verser</label>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row py-2 g-4 mb-2">
+                                    <div class="col-md">
+                                        <div class="form">
+                                            <input name="vente" type="radio" class="form-control  "  id="vente" placeholder="Vente" required  autofocus>
+                                            <label for="vente">Retards</label>
+                                        </div>
+                                    </div>
+                              
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="paiement" type="number" class="form-control  "  id="paiement" placeholder="Paiement" required  autofocus>
+                                            <label for="paiement">Paiement</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
+                                            <label for="reste_a_verser">Reste a verser</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
+                                            <label for="reste_a_verser">Reste a verser</label>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
                 
-            </div>
-        </div>
-
-          <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-        
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">Nouvelle paramètre</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <div class="control">
-
-                        <div class="row mb-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="titre" type="text" class="form-control"  id="titre" placeholder="Titre" required   ng-model="parametreDTO
-.titre"  autofocus>
-                                    <label for="titre">Titre</label>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="row g-2 mb-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <select class="form-control select" id="type" name="type" ng-model="parametreDTO
-.type"> 
-                                        <option value="Montant">Montant</option>
-                                        <option value="Heure">Heure</option>
-                                    </select>
-                                    <label for="type">Type </label>
-
-                                </div>
-                            </div>
-                      
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="valeur" type="number" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreDTO
-.valeur"  autofocus>
-                                    <label for="valeur">Valeur appliqué en pourcentage</label>
-                                </div>
-                            </div>
-                           
-                        </div>
-                                               
-                </div>
-                    
-                </form>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success me-10" ng-click="valider()">Enregistrer</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
                 
             </div>
-            
-
-            
         </div>
     </div>
-
-    </div>
     <!-- Pricing Plan End -->
-
-
-
-
-    <!-- Quote Start -->
-    
-    <!-- Vendor End -->
     
 
     <!-- Footer Start -->
@@ -276,7 +242,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script src="/js/parametreController.js"></script>
+    <script src="/js/addController.js"></script>
     <script src="/js/main.js"></script>
     <script >
         new DataTable('#example');
