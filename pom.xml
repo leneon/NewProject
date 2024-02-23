@@ -60,11 +60,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.24</version> <!-- Utilisation de la dernière version disponible au moment de ma dernière mise à jour -->
-		</dependency>
+
 
 
 	</dependencies>
