@@ -5,8 +5,16 @@ public class ParametreDTO {
     private String titre;
     private String type;
     private Float valeur;
+    private String slug;
 
     
+    public ParametreDTO(Long id, String titre, String type, Float valeur, String slug) {
+        this.id = id;
+        this.titre = titre;
+        this.type = type;
+        this.valeur = valeur;
+        this.slug = slug;
+    }
     public ParametreDTO(Long id, String titre, String type, Float valeur) {
         this.id = id;
         this.titre = titre;
@@ -39,5 +47,12 @@ public class ParametreDTO {
     public void setValeur(Float valeur) {
         this.valeur = valeur;
     }
+    public String getSlug() {
+        return slug;
+    }
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+    
     
 }

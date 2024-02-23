@@ -4,6 +4,7 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   const appUrl = "api/abattements";
   const urlLoadAbattements = appUrl ;
   const urlLoadClients= "api/clients";
+  const urlLoadParametres= "api/parametres";
   const urlCreateAbattement = appUrl + "/create";
   const urlUpdateAbattement = appUrl + "/update";
   const urlDeleteAbattement = appUrl + "/delete";
@@ -13,6 +14,7 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   $scope.AbattementDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, client: { id: null, nom: "" } };
   $scope.AbattementMasterDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, client: { id: null, nom: "" } };
   $scope.listeClients = [];
+  $scope.listeParametres = [];
 
    // Fonction pour charger la liste des clients
    $scope.loadClients = function () {
@@ -29,6 +31,22 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
     };
     // Chargez la liste des clients au chargement de la page
     $scope.loadClients();
+
+    // Fonction pour charger la liste des parametres
+    $scope.loadParametres = function () {
+    $http.get(urlLoadParametres)
+        .then(
+            function (res) {
+                $scope.listeParametres = res.data;
+                console.log("LISTE DES PARAMETRES : ", $scope.listeParametres);
+            },
+            function (error) {
+                console.log("ERREUR DE RECUPERATION DES PARAMETRES : ", error);
+            }
+        );
+    };
+    // Chargez la liste des clients au chargement de la page
+    $scope.loadParametres();
 
     // Fonction pour trouver une client par son ID
     $scope.findAbattementById = function (id) {

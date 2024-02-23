@@ -67,37 +67,37 @@ App.controller('parametreController', ['$scope','$http', function ($scope, $http
                 }
             );
     };
-// Fonction pour supprimer un Parametre
-$scope.deleteParametre = function (id) {
-    // Demander confirmation avant la suppression
-    swal({
-        title: "Êtes-vous sûr?",
-        text: "Une fois supprimé, vous ne pourrez pas récupérer ce paramètre!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    })
-    .then((willDelete) => {
-        if (willDelete) {
-            // Si l'utilisateur confirme la suppression, effectuez la requête DELETE
-            $http.delete(urlDeleteParametre + '/' + id)
-                .then(
-                    function (res) {
-                        console.log("Parametre SUPPRIME : ", res.data);
-                        $scope.loadParametres();
-                        $scope.successSwal("Parametre supprimé avec succès");
-                    },
-                    function (error) {
-                        console.log("ERREUR DE SUPPRESSION DU Parametre : ", error);
-                        $scope.errorSwal("Erreur lors de la suppression du Parametre");
-                    }
-                );
-        } else {
-            // Si l'utilisateur annule la suppression, affichez un message d'avertissement
-            $scope.warningSwal("La suppression a été annulée");
-        }
-    });
-};
+    // Fonction pour supprimer un Parametre
+    $scope.deleteParametre = function (id) {
+        // Demander confirmation avant la suppression
+        swal({
+            title: "Êtes-vous sûr?",
+            text: "Une fois supprimé, vous ne pourrez pas récupérer ce paramètre!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                // Si l'utilisateur confirme la suppression, effectuez la requête DELETE
+                $http.delete(urlDeleteParametre + '/' + id)
+                    .then(
+                        function (res) {
+                            console.log("Parametre SUPPRIME : ", res.data);
+                            $scope.loadParametres();
+                            $scope.successSwal("Parametre supprimé avec succès");
+                        },
+                        function (error) {
+                            console.log("ERREUR DE SUPPRESSION DU Parametre : ", error);
+                            $scope.errorSwal("Erreur lors de la suppression du Parametre");
+                        }
+                    );
+            } else {
+                // Si l'utilisateur annule la suppression, affichez un message d'avertissement
+                $scope.warningSwal("La suppression a été annulée");
+            }
+        });
+    };
 
 
   
@@ -166,8 +166,7 @@ $scope.deleteParametre = function (id) {
             button: "OK!",
         });
     };
-
-    
+  
     $scope.modalShow = function(){
         $('#myModal').modal('show');
     };

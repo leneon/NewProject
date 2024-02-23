@@ -151,52 +151,46 @@
                                 <div class="row py-2 g-3 mb-2">
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input name="vente" type="number" class="form-control  "  id="vente" placeholder="Vente" required  autofocus>
+                                            <input name="vente" type="number" class="form-control" id="vente" placeholder="Vente" required autofocus oninput="calculateResteAVerser()">
                                             <label for="vente">Vente</label>
                                         </div>
                                     </div>
-                              
+                                
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input name="paiement" type="number" class="form-control  "  id="paiement" placeholder="Paiement" required  autofocus>
+                                            <input name="paiement" type="number" class="form-control" id="paiement" placeholder="Paiement" required autofocus oninput="calculateResteAVerser()">
                                             <label for="paiement">Paiement</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
+                                            <input name="reste_a_verser" type="text" class="form-control" id="reste_a_verser" placeholder="Reste a verser" readonly>
                                             <label for="reste_a_verser">Reste a verser</label>
                                         </div>
                                     </div>
-                                   
-                                </div>
+                                </div>                            
                                 <div class="row py-2 g-4 mb-2">
-                                    <div class="col-md">
+                                    <div class="col-md" data-ng-repeat="parametre in listeParametres">
                                         <div class="form">
-                                            <input name="vente" type="radio" class="form-control  "  id="vente" placeholder="Vente" required  autofocus>
-                                            <label for="vente">Retards</label>
+                                            <input class="form-check-input me-2" type="checkbox" id="{{parametre.slug}}" aria-label="..." onchange="toggleHeures()">
+                                            <label for="{{parametre.slug}}">{{parametre.titre}}</label>
                                         </div>
                                     </div>
-                              
+                                
+                                    
+                                </div>
+                                <div class="row py-2" id="heuresRow" style="display:none;">
                                     <div class="col-md">
-                                        <div class="form-floating">
-                                            <input name="paiement" type="number" class="form-control  "  id="paiement" placeholder="Paiement" required  autofocus>
-                                            <label for="paiement">Paiement</label>
+                                        <div class="form-floating col-md-3">
+                                            <input name="heure" type="time" class="form-control  "  id="heure" placeholder="Reste a verser" required  autofocus>
+                                            <label for="heure">Heures</label>
                                         </div>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
-                                            <label for="reste_a_verser">Reste a verser</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-floating">
-                                            <input name="reste_a_verser" type="number" class="form-control  "  id="reste_a_verser" placeholder="Reste a verser" required  autofocus>
-                                            <label for="reste_a_verser">Reste a verser</label>
-                                        </div>
-                                    </div>
-                                   
+                                </div>
+                               
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" ng-click="valider()">Enregistrer</button>
+                                    <button type="button" class="btn btn-primary" >Annuler</button>
                                 </div>
                             </form>
                         </div>
@@ -246,6 +240,23 @@
     <script src="/js/main.js"></script>
     <script >
         new DataTable('#example');
+        function toggleHeures() {
+            var retardsCheckbox = document.getElementById('retards');
+            var heuresRow = document.getElementById('heuresRow');
+    
+            if (retardsCheckbox.checked) {
+                heuresRow.style.display = 'block';
+            } else {
+                heuresRow.style.display = 'none';
+            }
+        }
+        function calculateResteAVerser() {
+            var vente = parseFloat(document.getElementById('vente').value) || 0;
+            var paiement = parseFloat(document.getElementById('paiement').value) || 0;
+            var resteAVerser = vente - paiement;
+    
+            document.getElementById('reste_a_verser').value = resteAVerser.toFixed(2);
+        }
     </script>
 </body>
 

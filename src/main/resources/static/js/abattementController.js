@@ -105,42 +105,42 @@ $scope.loadAgences();
             );
     };
    // Fonction pour supprimer une agence
-$scope.deleteUtilisateur = function (id) {
-    // Afficher la boîte de dialogue de confirmation
-    swal({
-        title: "Êtes-vous sûr?",
-        text: "Une fois supprimé, vous ne pourrez pas récupérer ce Utilisateur!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    })
-    .then((willDelete) => {
-        // Si l'utilisateur clique sur le bouton "Supprimer"
-        if (willDelete) {
-            // Envoyer la requête de suppression au serveur
-            $http.delete(urlDeleteUtilisateur + '/' + id)
-                .then(
-                    function (res) {
-                        // Afficher un message de succès
-                        swal("Le Utilisateur a été supprimée avec succès!", {
-                            icon: "success",
-                        });
-                        // Recharger la liste des agences
-                        $scope.loadUtilisateurs();
-                    },
-                    function (error) {
-                        // Afficher un message d'erreur en cas d'échec de la suppression
-                        swal("Erreur lors de la suppression du Utilisateur : " + error.message, {
-                            icon: "error",
-                        });
-                    }
-                );
-        } else {
-            // Si l'utilisateur clique sur le bouton "Annuler", ne rien faire
-            swal("Le Utilisateur n'a pas été supprimée!");
-        }
-    });
-};
+    $scope.deleteUtilisateur = function (id) {
+        // Afficher la boîte de dialogue de confirmation
+        swal({
+            title: "Êtes-vous sûr?",
+            text: "Une fois supprimé, vous ne pourrez pas récupérer ce Utilisateur!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            // Si l'utilisateur clique sur le bouton "Supprimer"
+            if (willDelete) {
+                // Envoyer la requête de suppression au serveur
+                $http.delete(urlDeleteUtilisateur + '/' + id)
+                    .then(
+                        function (res) {
+                            // Afficher un message de succès
+                            swal("Le Utilisateur a été supprimée avec succès!", {
+                                icon: "success",
+                            });
+                            // Recharger la liste des agences
+                            $scope.loadUtilisateurs();
+                        },
+                        function (error) {
+                            // Afficher un message d'erreur en cas d'échec de la suppression
+                            swal("Erreur lors de la suppression du Utilisateur : " + error.message, {
+                                icon: "error",
+                            });
+                        }
+                    );
+            } else {
+                // Si l'utilisateur clique sur le bouton "Annuler", ne rien faire
+                swal("Le Utilisateur n'a pas été supprimée!");
+            }
+        });
+    };
 
   // Chargez la liste des Utilisateurs au chargement de la page
   $scope.loadUtilisateurs();

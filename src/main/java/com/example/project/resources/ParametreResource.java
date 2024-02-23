@@ -3,6 +3,7 @@ package com.example.project.resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.project.dto.ParametreDTO;
 import com.example.project.entities.Parametre;
 import com.example.project.services.ParametreService;
 
@@ -20,8 +21,8 @@ public class ParametreResource {
     }
 
     @GetMapping
-    public List<Parametre> getAllParametres() {
-        return parametreService.getAllParametres();
+    public List<ParametreDTO> getAllParametres() {
+        return parametreService.getAllParametresDTO();
     }
 
     @GetMapping("/find/{id}")
