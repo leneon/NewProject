@@ -11,8 +11,8 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   const urlFindAbattement = appUrl + "/find";
 
   $scope.listeAbattements = [];
-  $scope.AbattementDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, client: { id: null, nom: "" } };
-  $scope.AbattementMasterDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, client: { id: null, nom: "" } };
+  $scope.abattementDTO = {abattement:{ id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null }, parametres: {},heure:null};
+  $scope.abattementMasterDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null, parametres: [],heure:null };
   $scope.listeClients = [];
   $scope.listeParametres = [];
 
@@ -165,9 +165,10 @@ $scope.deleteAbattement = function (id) {
   $scope.loadAbattements();
 
   $scope.valider = function () {
-        
+        $scope.abattementMasterDTO.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
+        console.log($scope.abattementMasterDTO);
     // Vérifiez si les champs requis sont remplis
-    if (!$scope.abattementMasterDTO.client || !$scope.abattementMasterDTO.nom || !$scope.abattementMasterDTO.prenoms || !$scope.abattementMasterDTO.email || !$scope.abattementMasterDTO.telephone || !$scope.abattementMasterDTO.username) {
+    if (!$scope.abattementMasterDTO.client || !$scope.abattementMasterDTO.date || !$scope.abattementMasterDTO.vente || !$scope.abattementMasterDTO.paiement || !$scope.abattementMasterDTO.solde_a_verser || !$scope.abattementMasterDTO.journee) {
         console.log("Veuillez remplir tous les champs obligatoires.");
         swal({
             title: "Erreur",
