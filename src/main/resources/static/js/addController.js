@@ -11,7 +11,10 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   const urlFindAbattement = appUrl + "/find";
 
   $scope.listeAbattements = [];
-  $scope.abattementDTO = {abattement:{ id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null }, parametres: {},heure:null};
+  $scope.abattementMasterObjectDTO = {
+                abattement:{ id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null }, 
+                parametres: []
+                };
   $scope.abattementMasterDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null, parametres: [],heure:null };
   $scope.listeClients = [];
   $scope.listeParametres = [];
@@ -80,7 +83,7 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
 
     // Fonction pour créer une Abattement
     $scope.createAbattement = function () {
-        var AbattementJson = angular.toJson($scope.abattementMasterDTO);
+        var AbattementJson = angular.toJson($scope.abattementMasterObjectDTO);
     
         console.log(urlCreateAbattement, AbattementJson);
         // Envoyer les données JSON dans la requête POST
@@ -107,7 +110,7 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
 
     // Fonction pour mettre à jour une 
     $scope.updateAbattement = function () {
-        $http.put(urlUpdateAbattement+'/'+$scope.abattementMasterDTO.id, $scope.abattementMasterDTO)
+        $http.put(urlUpdateAbattement+'/'+$scope.abattementMasterObjectDTO.abattement.id, $scope.abattementMasterObjectDTO.abattement)
             .then(
                 function (res) {
                     console.log("Abattement MISE A JOUR : ", res.data);
@@ -165,10 +168,12 @@ $scope.deleteAbattement = function (id) {
   $scope.loadAbattements();
 
   $scope.valider = function () {
-        $scope.abattementMasterDTO.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
-        console.log($scope.abattementMasterDTO);
-    // Vérifiez si les champs requis sont remplis
-    if (!$scope.abattementMasterDTO.client || !$scope.abattementMasterDTO.date || !$scope.abattementMasterDTO.vente || !$scope.abattementMasterDTO.paiement || !$scope.abattementMasterDTO.solde_a_verser || !$scope.abattementMasterDTO.journee) {
+      console.log($scope.abattementMasterObjectDTO);
+        $scope.abattementMasterObjectDTO.abattement.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
+        if($scope.abattementMasterObjectDTO.parametres.heure)
+            $scope.abattementMasterObjectDTO.parametres.heure = $scope.abattementMasterObjectDTO.parametres.heure.toISOString().substring(11, 19);
+        // Vérifiez si les champs requis sont remplis
+    if (!$scope.abattementMasterObjectDTO.abattement.client || !$scope.abattementMasterObjectDTO.abattement.date || !$scope.abattementMasterObjectDTO.abattement.vente || !$scope.abattementMasterObjectDTO.abattement.paiement || !$scope.abattementMasterObjectDTO.abattement.solde_a_verser || !$scope.abattementMasterObjectDTO.abattement.journee) {
         console.log("Veuillez remplir tous les champs obligatoires.");
         swal({
             title: "Erreur",
@@ -179,7 +184,7 @@ $scope.deleteAbattement = function (id) {
         return;
     }
 
-    if ($scope.abattementMasterDTO.id) {
+    if ($scope.abattementMasterObjectDTO.abattement.id) {
         // Appel de la fonction de mise à jour
         $scope.updateAbattement();
     } else {
