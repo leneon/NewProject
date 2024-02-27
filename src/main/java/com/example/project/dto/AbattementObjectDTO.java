@@ -7,13 +7,11 @@ import com.example.project.entities.Abattement;
 public class AbattementObjectDTO {
     private Abattement abatttement;
     private List parametres;
-    public String getHeure() {
-        return heure;
+
+    public AbattementObjectDTO(Abattement abatttement, List parametres) {
+        this.abatttement = abatttement;
+        this.parametres = parametres;
     }
-    public void setHeure(String heure) {
-        this.heure = heure;
-    }
-    private String heure;
     public AbattementObjectDTO() {
     }
     public Abattement getAbatttement() {
