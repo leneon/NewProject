@@ -125,7 +125,7 @@
                                 <div class="row g-3 mb-2">
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <select class="form-control select" id="type" name="type" ng-model="abattementMasterObjectDTO.abattement.client.id" > 
+                                            <select class="form-control select" id="type" name="type" ng-model="abattementMasterObjectDTO.client.id" > 
                                                 <option value="">Choisissez un client</option>
                                                 <option data-ng-repeat="client in listeClients" id="client" value="{{ client.id }}">{{ client.numeroOp }}</option>
                                             </select>
@@ -136,13 +136,13 @@
                               
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input ng-model="abattementMasterObjectDTO.abattement.date" name="date" readonly type="date" class="form-control  "  id="date" placeholder="Date" required  autofocus>
+                                            <input ng-model="abattementMasterObjectDTO.date" name="date" readonly type="date" class="form-control  "  id="date" placeholder="Date" required  autofocus>
                                             <label for="date">Date</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input ng-model="abattementMasterObjectDTO.abattement.journee" name="journee" type="number" class="form-control  "  id="journee" placeholder="Journée" required  autofocus>
+                                            <input ng-model="abattementMasterObjectDTO.journee" name="journee" type="number" class="form-control  "  id="journee" placeholder="Journée" required  autofocus>
                                             <label for="journee">Journée</label>
                                         </div>
                                     </div>
@@ -151,20 +151,20 @@
                                 <div class="row py-2 g-3 mb-2">
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input ng-model="abattementMasterObjectDTO.abattement.vente" name="vente" type="number" class="form-control" id="vente" placeholder="Vente" required autofocus oninput="calculateSoldeAVerser()">
+                                            <input ng-model="abattementMasterObjectDTO.vente" name="vente" type="number" class="form-control" id="vente" placeholder="Vente" required autofocus oninput="calculateSoldeAVerser()">
                                             <label for="vente">Vente</label>
                                         </div>
                                     </div>
                                 
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input ng-model="abattementMasterObjectDTO.abattement.paiement" name="paiement" type="number" class="form-control" id="paiement" placeholder="Paiement" required autofocus oninput="calculateSoldeAVerser()">
+                                            <input ng-model="abattementMasterObjectDTO.paiement" name="paiement" type="number" class="form-control" id="paiement" placeholder="Paiement" required autofocus oninput="calculateSoldeAVerser()">
                                             <label for="paiement">Paiement</label>
                                         </div>
                                     </div>
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input ng-model="abattementMasterObjectDTO.abattement.solde_a_verser"  name="solde_a_verser" type="text" class="form-control" id="solde_a_verser" placeholder="Solde a verser" readonly>
+                                            <input ng-model="abattementMasterObjectDTO.solde_a_verser"  name="solde_a_verser" type="text" class="form-control" id="solde_a_verser" placeholder="Solde a verser" readonly>
                                             <label for="solde_a_verser">Solde a verser</label>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                                 <div class="row py-2 g-4 mb-2">
                                     <div class="col-md" data-ng-repeat="parametre in listeParametres">
                                         <div class="form">
-                                            <input ng-model="abattementMasterObjectDTO.parametres[parametre.slug]" class="form-check-input me-2" type="checkbox" id="{{parametre.slug}}" aria-label="..." onchange="toggleHeures()">
+                                            <input ng-model="abattementMasterObjectDTO[parametre.slug]" class="form-check-input me-2" type="checkbox" id="{{parametre.slug}}" aria-label="..." onchange="toggleHeures()">
                                             <label for="{{parametre.slug}}">{{parametre.titre}}</label>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                                 <div class="row py-2" id="heuresRow" style="display:none;">
                                     <div class="col-md">
                                         <div class="form-floating col-md-3">
-                                            <input ng-model="abattementMasterObjectDTO.parametres.heure" name="heure" type="time" class="form-control"  id="heure" placeholder="Solde a verser" required  autofocus>
+                                            <input ng-model="abattementMasterObjectDTO.heure" name="heure" type="time" class="form-control"  id="heure" placeholder="Solde a verser" required  autofocus>
                                             <label for="heure">Heures</label>
                                         </div>
                                     </div>

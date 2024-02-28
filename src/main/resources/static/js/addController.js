@@ -11,11 +11,8 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   const urlFindAbattement = appUrl + "/find";
 
   $scope.listeAbattements = [];
-  $scope.abattementMasterObjectDTO = {
-                abattement:{ id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null }, 
-                parametres: []
-                };
-  $scope.abattementMasterDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, reste_a_verser: null,reg: null,nonReg: null,total: null, parametres: [],heure:null };
+  $scope.abattementMasterObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null, moins_verses_avec_retard:false, moins_verses:false, non_verse:false, retards:false };
+  $scope.abattementObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null};
   $scope.listeClients = [];
   $scope.listeParametres = [];
 
@@ -85,9 +82,9 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
     $scope.createAbattement = function () {
         var AbattementJson = angular.toJson($scope.abattementMasterObjectDTO);
     
-        console.log(urlCreateAbattement, AbattementJson);
+        console.log(urlCreateAbattement, $scope.abattementMasterObjectDTO);
         // Envoyer les données JSON dans la requête POST
-        $http.post(urlCreateAbattement, AbattementJson)
+        $http.post(urlCreateAbattement, $scope.abattementMasterObjectDTO)
             .then(
                 function (res) {
                     $scope.modalHide();
@@ -110,7 +107,7 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
 
     // Fonction pour mettre à jour une 
     $scope.updateAbattement = function () {
-        $http.put(urlUpdateAbattement+'/'+$scope.abattementMasterObjectDTO.abattement.id, $scope.abattementMasterObjectDTO.abattement)
+        $http.put(urlUpdateAbattement+'/'+$scope.abattementMasterObjectDTO.id, $scope.abattementMasterObjectDTO)
             .then(
                 function (res) {
                     console.log("Abattement MISE A JOUR : ", res.data);
@@ -169,11 +166,11 @@ $scope.deleteAbattement = function (id) {
 
   $scope.valider = function () {
       console.log($scope.abattementMasterObjectDTO);
-        $scope.abattementMasterObjectDTO.abattement.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
-        if($scope.abattementMasterObjectDTO.parametres.heure)
-            $scope.abattementMasterObjectDTO.parametres.heure = $scope.abattementMasterObjectDTO.parametres.heure.toISOString().substring(11, 19);
+        $scope.abattementMasterObjectDTO.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
+        if($scope.abattementMasterObjectDTO.heure)
+            $scope.abattementMasterObjectDTO.heure = $scope.abattementMasterObjectDTO.heure.toISOString().substring(11, 19);
         // Vérifiez si les champs requis sont remplis
-    if (!$scope.abattementMasterObjectDTO.abattement.client || !$scope.abattementMasterObjectDTO.abattement.date || !$scope.abattementMasterObjectDTO.abattement.vente || !$scope.abattementMasterObjectDTO.abattement.paiement || !$scope.abattementMasterObjectDTO.abattement.solde_a_verser || !$scope.abattementMasterObjectDTO.abattement.journee) {
+    if (!$scope.abattementMasterObjectDTO.client || !$scope.abattementMasterObjectDTO.date || !$scope.abattementMasterObjectDTO.vente || !$scope.abattementMasterObjectDTO.paiement || !$scope.abattementMasterObjectDTO.solde_a_verser || !$scope.abattementMasterObjectDTO.journee) {
         console.log("Veuillez remplir tous les champs obligatoires.");
         swal({
             title: "Erreur",
@@ -184,7 +181,7 @@ $scope.deleteAbattement = function (id) {
         return;
     }
 
-    if ($scope.abattementMasterObjectDTO.abattement.id) {
+    if ($scope.abattementMasterObjectDTO.id) {
         // Appel de la fonction de mise à jour
         $scope.updateAbattement();
     } else {
