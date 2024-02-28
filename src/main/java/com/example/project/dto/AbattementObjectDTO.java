@@ -1,6 +1,9 @@
 package com.example.project.dto;
 
+import java.sql.Time;
 import java.util.Date;
+import java.util.List;
+
 
 
 public class AbattementObjectDTO {
@@ -13,64 +16,13 @@ public class AbattementObjectDTO {
     private Double reg;
     private Double nonReg;
     private Double total;
-
-    private Boolean retards;
-    private Boolean moins_verses;
-    private Boolean moins_verses_avec_retard;
-    private Boolean non_verse;
-    private String heure;
+    private List<String> parametres;
+    private Time heure;
 
     public AbattementObjectDTO() {
     }
 
-
-    public Boolean getRetards() {
-        return retards;
-    }
-
-    public void setRetards(Boolean retards) {
-        this.retards = retards;
-    }
-
-    public Boolean getMoins_verses() {
-        return moins_verses;
-    }
-
-
-    public void setMoins_verses(Boolean moins_verses) {
-        this.moins_verses = moins_verses;
-    }
-
-
-    public Boolean getMoins_verses_avec_retard() {
-        return moins_verses_avec_retard;
-    }
-
-
-    public void setMoins_verses_avec_retard(Boolean moins_verse_avec_retard) {
-        this.moins_verses_avec_retard = moins_verse_avec_retard;
-    }
-
-
-    public Boolean getNon_verse() {
-        return non_verse;
-    }
-
-
-    public void setNon_verse(Boolean non_verse) {
-        this.non_verse = non_verse;
-    }
-
-
-    public String getHeure() {
-        return heure;
-    }
-
-
-    public void setHeure(String heure) {
-        this.heure = heure;
-    }
-
+    
 
     public Long getId() {
         return id;
@@ -159,6 +111,30 @@ public class AbattementObjectDTO {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+
+
+    public java.util.List<String> getParametres() {
+        return  parametres;
+    }
+
+
+
+    public void setParametres(List parametres) {
+        this.parametres = parametres;
+    }
+
+
+
+    public Time getHeure() {
+        return heure;
+    }
+
+
+
+    public void setHeure(Time heure) {
+        this.heure = heure;
     }
 
 

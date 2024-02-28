@@ -36,7 +36,7 @@ public class AbattementResource {
     @Autowired
     private ParametreService parametreService;
     @Autowired
-    private AbattementParametreRepository AbattementParametreRepository;
+    private AbattementParametreRepository abattementParametreRepository;
 
 
     @GetMapping
@@ -52,20 +52,11 @@ public class AbattementResource {
     @PostMapping("/create")
     public Abattement createAbattement(@RequestBody AbattementObjectDTO abattementObjectDTO) {
         System.out.println("\n\n"+abattementObjectDTO.toString()+"\n\n");
-        List <String> parametres = new ArrayList<>();
-        if(abattementObjectDTO.getMoins_verses() && abattementObjectDTO.getMoins_verses()!=null)
-            parametres.add("moins_verses");
-        if(abattementObjectDTO.getNon_verse() && abattementObjectDTO.getNon_verse()!=null)
-            parametres.add("non_verse");
-        if( abattementObjectDTO.getRetards() && abattementObjectDTO.getRetards()!=null)
-            parametres.add("retards");
-        if(!abattementObjectDTO.getMoins_verses_avec_retard() || abattementObjectDTO.getMoins_verses_avec_retard() != null)
-            parametres.add("moins_verses_avec_retard");
 
         Abattement abattement = abattementService.createAbattement(this.setAbattement(abattementObjectDTO));
         if(abattement!=null){
             parametreService.getAllParametresDTO().stream().forEach(temp->{
-                this.createAbattementParametres(abattement, temp, parametres, abattementObjectDTO);
+                this.createAbattementParametres(abattement, temp, abattementObjectDTO.getParametres(), abattementObjectDTO);
             });
             abattementService.updateAbattement(abattement.getId(), abattement);
         } 
@@ -75,15 +66,15 @@ public class AbattementResource {
         AbattementParametre abattementParametre = new AbattementParametre();
         abattementParametre.setAbattement(abattement);
         abattementParametre.setParametre(parametreService.getParametreById(parametreDTO.getId()));
-        parametres.stream().forEach(str ->{
-            if(parametreDTO.getSlug().contentEquals(str)){
+        parametres.stream().forEach(str->{
+            if(str.equals(parametreDTO.getId().toString())){
                 abattementParametre.setMontantAbattement((abattement.getVente()*parametreDTO.getValeur())/100);
                 abattementParametre.setValeur("retards".equals(str) && parametreDTO.getSlug().equals(str)? aObjectDTO.getHeure().toString() : abattement.getSoldeAVerser().toString());
             }
         });     
-        abattement.setTotal((abattement.getTotal()!=null? abattement.getTotal() : 0) + (abattementParametre.getMontantAbattement()!=null? abattementParametre.getMontantAbattement() : 0));
         
-        AbattementParametreRepository.save(abattementParametre);
+        AbattementParametre ap = abattementParametreRepository.save(abattementParametre);
+        abattement.setTotal((abattement.getTotal()!=null? abattement.getTotal() : 0)  +  (ap.getMontantAbattement()!=null? ap.getMontantAbattement():0) );
     }
 
     public Abattement setAbattement(AbattementObjectDTO abattementObjectDTO)

@@ -172,7 +172,7 @@
                                 <div class="row py-2 g-4 mb-2">
                                     <div class="col-md" data-ng-repeat="parametre in listeParametres">
                                         <div class="form">
-                                            <input ng-model="abattementMasterObjectDTO[parametre.slug]" class="form-check-input me-2" type="checkbox" id="{{parametre.slug}}" aria-label="..." onchange="toggleHeures()">
+                                            <input data-ng-model="abattementMasterObjectDTO.parametres[parametre.id]"  class="form-check-input me-2" type="checkbox" id="{{parametre.slug}}" aria-label="..." onchange="toggleHeures()">
                                             <label for="{{parametre.slug}}">{{parametre.titre}}</label>
                                         </div>
                                     </div>

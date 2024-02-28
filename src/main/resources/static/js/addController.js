@@ -11,8 +11,8 @@ App.controller('addController', ['$scope','$http', function ($scope, $http) {
   const urlFindAbattement = appUrl + "/find";
 
   $scope.listeAbattements = [];
-  $scope.abattementMasterObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null, moins_verses_avec_retard:false, moins_verses:false, non_verse:false, retards:false };
-  $scope.abattementObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null};
+  $scope.abattementMasterObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null, heure:null, parametres:[]};
+  $scope.abattementObjectDTO = { id: null, client: {id:null, numeroOp:null}, date: new Date(), journee: null, vente: null, paiement: null, solde_a_verser: null,reg: null,nonReg: null,total: null, heure:null, parametres:[]};
   $scope.listeClients = [];
   $scope.listeParametres = [];
 
@@ -165,12 +165,20 @@ $scope.deleteAbattement = function (id) {
   $scope.loadAbattements();
 
   $scope.valider = function () {
-      console.log($scope.abattementMasterObjectDTO);
-        $scope.abattementMasterObjectDTO.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
-        if($scope.abattementMasterObjectDTO.heure)
-            $scope.abattementMasterObjectDTO.heure = $scope.abattementMasterObjectDTO.heure.toISOString().substring(11, 19);
-        // Vérifiez si les champs requis sont remplis
-    if (!$scope.abattementMasterObjectDTO.client || !$scope.abattementMasterObjectDTO.date || !$scope.abattementMasterObjectDTO.vente || !$scope.abattementMasterObjectDTO.paiement || !$scope.abattementMasterObjectDTO.solde_a_verser || !$scope.abattementMasterObjectDTO.journee) {
+    var parametresSelectionnes = [];
+    for (var key in $scope.abattementMasterObjectDTO.parametres) {
+        if ($scope.abattementMasterObjectDTO.parametres[key]) {
+            parametresSelectionnes.push(key);
+        }
+    }
+    $scope.abattementMasterObjectDTO.parametres = parametresSelectionnes;
+
+    console.log($scope.abattementMasterObjectDTO);
+    $scope.abattementMasterObjectDTO.solde_a_verser = parseFloat(document.getElementById('solde_a_verser').value);
+    if($scope.abattementMasterObjectDTO.heure)
+        $scope.abattementMasterObjectDTO.heure = $scope.abattementMasterObjectDTO.heure.toISOString().substring(11, 19);
+    // Vérifiez si les champs requis sont remplis
+    if (!$scope.abattementMasterObjectDTO.client || !$scope.abattementMasterObjectDTO.date || !$scope.abattementMasterObjectDTO.vente || !$scope.abattementMasterObjectDTO.paiement || !$scope.abattementMasterObjectDTO.journee) {
         console.log("Veuillez remplir tous les champs obligatoires.");
         swal({
             title: "Erreur",

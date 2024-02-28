@@ -1,15 +1,12 @@
 var App = angular.module('myApp', []);
 
-App.controller('utilisateurController', ['$scope','$http', function ($scope, $http) {
-  const appUrl = "api/utilisateurs";
-  const urlLoadUtilisateurs = appUrl ;
-  const urlLoadAgences = "api/agences";
-  const urlCreateUtilisateur = appUrl + "/create";
-  const urlUpdateUtilisateur = appUrl + "/update";
-  const urlDeleteUtilisateur = appUrl + "/delete";
+App.controller('abattementsController', ['$scope','$http', function ($scope, $http) {
+  const appUrl = "api/abattements";
+  const urlLoadabattements = appUrl ;
+  const urlDeleteAbattements = appUrl + "/delete";
   const urlFindUtilisateur = appUrl + "/find";
 
-  $scope.listeUtilisateurs = [];
+  $scope.listeabattements = [];
   $scope.utilisateurDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, agence: { id: null, nom: "" } };
   $scope.utilisateurMasterDTO = { id: null, nom: null, prenoms: null, email: null, telephone: null, username: null, agence: { id: null, nom: "" } };
   $scope.listeAgences = [];
@@ -45,54 +42,28 @@ $scope.loadAgences();
     };
 
 
-  // Fonction pour charger la liste des Utilisateurs
-  $scope.loadUtilisateurs = function () {
-      $http.get(urlLoadUtilisateurs)
+  // Fonction pour charger la liste des abattements
+  $scope.loadAbattements = function () {
+      $http.get(urlLoadAbattements)
           .then(
               function (res) {
-                  $scope.listeUtilisateurs = res.data;
-                  console.log("LISTE DES UtilisateurS : ", $scope.listeUtilisateurs);
+                  $scope.listeabattements = res.data;
+                  console.log("LISTE DES abattements : ", $scope.listeabattements);
               },
               function (error) {
-                  console.log("ERREUR DE RECUPERATION DES UtilisateurS : ", error);
+                  console.log("ERREUR DE RECUPERATION DES abattements : ", error);
               }
           );
   };
 
-    // Fonction pour créer une Utilisateur
-    $scope.createUtilisateur = function () {
-        var UtilisateurJson = angular.toJson($scope.utilisateurMasterDTO);
-    
-        console.log(urlCreateUtilisateur, UtilisateurJson);
-        // Envoyer les données JSON dans la requête POST
-        $http.post(urlCreateUtilisateur, UtilisateurJson)
-            .then(
-                function (res) {
-                    $scope.modalHide();
-                    console.log("Utilisateur CREE : ", res.data);
-                    $scope.loadUtilisateurs();
-                    swal({
-                        title: "Succès",
-                        text: "Utilisateur crée avec succès!",
-                        icon: "success",
-                        button: "OK!",
-                      });
-                    // Réinitialisez l'objet UtilisateurMasterDTO après la création
-                    $scope.utilisateurMasterDTO = $scope.utilisateurDTO ;               },
-                function (error) {
-                    console.log("ERREUR DE CREATION DE L'Utilisateur : ", error);
-                }
-            );
-    };
-    
 
     // Fonction pour mettre à jour une 
-    $scope.updateUtilisateur = function () {
-        $http.put(urlUpdateUtilisateur+'/'+$scope.utilisateurMasterDTO.id, $scope.utilisateurMasterDTO)
+    $scope.updateAbattements = function () {
+        $http.put(urlUpdateAbattements+'/'+$scope.utilisateurMasterDTO.id, $scope.utilisateurMasterDTO)
             .then(
                 function (res) {
                     console.log("Utilisateur MISE A JOUR : ", res.data);
-                    $scope.loadUtilisateurs();
+                    $scope.loadabattements();
                     // Réinitialisez l'objet UtilisateurDTO après la mise à jour
                     $scope.utilisateurMasterDTO = $scope.utilisateurDTO ;     
                     $scope.modalHide();
@@ -105,7 +76,7 @@ $scope.loadAgences();
             );
     };
    // Fonction pour supprimer une agence
-    $scope.deleteUtilisateur = function (id) {
+    $scope.deleteAbattements = function (id) {
         // Afficher la boîte de dialogue de confirmation
         swal({
             title: "Êtes-vous sûr?",
@@ -118,7 +89,7 @@ $scope.loadAgences();
             // Si l'utilisateur clique sur le bouton "Supprimer"
             if (willDelete) {
                 // Envoyer la requête de suppression au serveur
-                $http.delete(urlDeleteUtilisateur + '/' + id)
+                $http.delete(urlDeleteAbattements + '/' + id)
                     .then(
                         function (res) {
                             // Afficher un message de succès
@@ -126,7 +97,7 @@ $scope.loadAgences();
                                 icon: "success",
                             });
                             // Recharger la liste des agences
-                            $scope.loadUtilisateurs();
+                            $scope.loadabattements();
                         },
                         function (error) {
                             // Afficher un message d'erreur en cas d'échec de la suppression
@@ -142,8 +113,8 @@ $scope.loadAgences();
         });
     };
 
-  // Chargez la liste des Utilisateurs au chargement de la page
-  $scope.loadUtilisateurs();
+  // Chargez la liste des abattements au chargement de la page
+  $scope.loadabattements();
 
   $scope.valider = function () {
         
@@ -161,10 +132,10 @@ $scope.loadAgences();
 
     if ($scope.utilisateurMasterDTO.id) {
         // Appel de la fonction de mise à jour
-        $scope.updateUtilisateur();
+        $scope.updateAbattements();
     } else {
         // Appel de la fonction de création
-        $scope.createUtilisateur();
+        $scope.createAbattements();
     }
 };
 
