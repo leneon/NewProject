@@ -63,7 +63,6 @@ App.controller('agenceController', ['$scope','$http', function ($scope,$http) {
                     $scope.loadAgences();
                     // Réinitialisez l'objet agenceDTO après la mise à jour
                     $scope.agenceMasterDTO = { id: null, nom: null, adresse: null, ville: null, localisation: null };
-                    $scope.modalHide();
                     $scope.successSwal("Agence modifier avec succès.");
                 },
                 function (error) {
@@ -141,6 +140,8 @@ $scope.deleteAgence = function (id) {
         } else {
             // Appel de la fonction de création
             $scope.createAgence();
+            $scope.modalHide();
+
         }
     };
 

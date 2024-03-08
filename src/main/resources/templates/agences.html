@@ -12,14 +12,15 @@
   
 	<!-- Vendors Style-->	  
 	<!-- Style-->  
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/color_theme.css">
-	<link rel="stylesheet" href="css/skin_color.css">
-
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- <link rel="stylesheet" href="css/color_theme.css"> -->
+	<!-- <link rel="stylesheet" href="css/skin_color.css"> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </head> 
 <body class="hold-transition light-skin sidebar-mini theme-success fixed" ng-controller="agenceController">
@@ -174,7 +175,7 @@
 					<span>Dashboard</span>					
 				  </a>
 				</li>
-				<li>
+				<li class="active">
 				  <a th:href="@{/agences}">
 					<i data-feather="calendar"></i>
 					<span>Agences</span>
@@ -192,19 +193,25 @@
 					<span>Utilisateur</span>					
 				  </a>				 
 				</li>				
+				<li class="treeview">
+                    <a href="#">
+                      <i data-feather="activity"></i>
+                      <span>Abattement</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a th:href="@{/abattement}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Nouveau</a></li>
+                      <li><a th:href="@{/abattements}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Liste</a></li>
+                    </ul>
+                </li>			
 				<li class="">
-				  <a th:href="@{/abattements}">
-					<i data-feather="activity"></i>
-					<span>Abattements</span>					
-				  </a>				 
-				</li>			
-				<li class="">
-				  <a href="#">
-					<i data-feather="inbox"></i>
-					<span>---</span>
-				  </a>					
-				 
-				</li>				 
+					<a th:href="@{/parametres}">
+					  <i data-feather="inbox"></i>
+					  <span>Paramètres</span>
+					</a>					
+				  </li>			 
 			  </ul>
 			  
 			  <div class="sidebar-widgets">
@@ -272,7 +279,7 @@
 										<th class="text-center">Actions</th>
 									</tr>
 								</thead>
-								<tbody data="listeAgences">
+								<tbody  >
 									<tr ng-repeat="agence in listeAgences track by $index">
 										<td> {{ $index+1 }} </td>
 										<td>
@@ -287,10 +294,10 @@
 										<td>
 											{{ agence.localisation }}
 										</td>
-																				<td class="text-center">
+										<td class="text-center">
 											<div class="list-icons d-inline-flex">
-												<a href="#" class="list-icons-item m-10"><i class="fa fa-edit"></i></a>
-												<a href="#" class="list-icons-item m-10"><i class="fa fa-trash"></i></a>
+												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findAgenceById(agence.id)"><i class="fa fa-edit"></i></a>
+												<a href="#" class="list-icons-item btn btn-danger m-5" ng-click="deleteAgence(agence.id)"><i class="fa fa-trash"></i></a>
 												
 											</div>
 										</td>
@@ -310,55 +317,59 @@
   </div>
   <!-- /.content-wrapper -->
   <div class="modal fade" id="myModal">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<!-- Modal Header -->
-			<div class="modal-header">
-				<h4 class="modal-title">Nouvelle Agence</h4>
-				<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
-			</div>
-			<!-- Modal Body -->
-			<div class="modal-body">
-				<form  action="#" method="POST" enctype="multipart/form-data">
-					<div class="control">
-						<div class="row g-2 mb-2">
-							<div class="col-md">
-								<div class="form-floating">
-									<input required ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
-									<label for="nom">Nom</label>
-								</div>
-							</div>
-							<div class="col-md">
-								<div class="form-floating">
-									<input required ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
-									<label for="adresse">Adresse</label>
-								</div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+			<form action="#" method="POST" enctype="multipart/form-data">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Nouvelle Agence</h4>
+                <button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input required ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+								<label for="nom">Nom</label>
 							</div>
 						</div>
-						<div class="row g-2 mb-2">
-							<div class="col-md">
-								<div class="form-floating">
-									<input required ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
-									<label for="ville">Ville</label>
-								</div>
-							</div>
-							<div class="col-md">
-								<div class="form-floating">
-									<input required ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
-									<label for="localisation">Localisation</label>
-								</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input required ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+								<label for="adresse">Adresse</label>
 							</div>
 						</div>
 					</div>
-					<!-- Modal Footer -->
-					<div class="modal-footer ">
-						<button type="button"  ng-click="valider()" class="btn btn-success">Enregistrer</button>
-						<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input required ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+								<label for="ville">Ville</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input required ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
+								<label for="localisation">Localisation</label>
+							</div>
+						</div>
 					</div>
-				</form>
+                   
+            </div>
+
+			<!-- Modal Footer -->
+			<div class="modal-footer col-md-12">
+				<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
+				<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
 			</div>
+
 		</div>
-	</div>
+		</form>
+        </div>
+    </div>
+
 </div>
 
  

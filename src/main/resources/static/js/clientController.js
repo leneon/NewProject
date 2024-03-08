@@ -68,9 +68,9 @@ $scope.loadAgences();
         $http.post(urlCreateClient, clientJson)
             .then(
                 function (res) {
-                    $scope.modalHide();
                     console.log("Client CREE : ", res.data);
                     $scope.loadClients();
+                    $scope.modalHide();
                     swal({
                         title: "Succès",
                         text: "Client crée avec succès!",
