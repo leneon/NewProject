@@ -122,7 +122,7 @@ App.controller('parametreController', ['$scope','$http', function ($scope, $http
     };
   
     // Fonction pour rechercher un Parametre
-    $scope.findParametre = function (id) {
+    $scope.findParametreById = function (id) {
         $http.get(urlFindParametre + '/' + id)
             .then(
                 function (res) {

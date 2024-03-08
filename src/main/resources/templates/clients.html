@@ -1,134 +1,275 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en"  ng-app="myApp">
-
+<html xmlns:th="http://www.thymeleaf.org" lang="en" ng-app="myApp">
 <head>
-    
-    <meta charset="utf-8"/>
-    <title>Startup - Clients</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="Free HTML Templates" name="keywords"/>
-    <meta content="Free HTML Templates" name="description"/>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/images/favicon.ico">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon"/>
+    <title>Project - Clients</title>
+  
+	<!-- Vendors Style-->	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- <link rel="stylesheet" href="css/color_theme.css"> -->
+	<!-- <link rel="stylesheet" href="css/skin_color.css"> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head> 
+<body class="hold-transition light-skin sidebar-mini theme-success fixed" ng-controller="clientController">
+	
+<div class="wrapper">
+	<div id="loader"></div>
 
-   <!-- Icon Font Stylesheet -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"/>
-   <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <header class="main-header">
+	<div class="d-flex align-items-center logo-box justify-content-start">	
+		<!-- Logo -->
+		<a href="index.html" class="logo">
+		  <!-- logo-->
+		  <div class="logo-mini w-50">
+			  <span class="light-logo"><img src="/images/logo-letter.png" alt="logo"></span>
+			  <span class="dark-logo"><img src="/images/logo-letter.png" alt="logo"></span>
+		  </div>
+		  <div class="logo-lg">
+			  <span class="light-logo"><img src="/images/logo-dark-text.png" alt="logo"></span>
+			  <span class="dark-logo"><img src="/images/logo-light-text.png" alt="logo"></span>
+		  </div>
+		</a>	
+	</div>  
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+	  <div class="app-menu">
+		<ul class="header-megamenu nav">
+			<li class="btn-group nav-item">
+				<a href="#" class="waves-effect waves-light nav-link push-btn btn-primary-light" data-toggle="push-menu" role="button">
+					<i data-feather="align-left"></i>
+			    </a>
+			</li>
 
-   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+		</ul> 
+	  </div>
+		
+      <div class="navbar-custom-menu r-side">
+        <ul class="nav navbar-nav">	
+			<li class="btn-group nav-item d-lg-inline-flex d-none">
+				<a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen btn-warning-light" title="Full Screen">
+					<i data-feather="maximize"></i>
+			    </a>
+			</li>
+		  <!-- Notifications -->
+		  <li class="dropdown notifications-menu">
+			<a href="#" class="waves-effect waves-light dropdown-toggle btn-info-light" data-bs-toggle="dropdown" title="Notifications">
+			  <i data-feather="bell"></i>
+			</a>
+			<ul class="dropdown-menu animated bounceIn">
 
-   <!-- Libraries Stylesheet -->
-   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"/>
-   <link href="lib/animate/animate.min.css" rel="stylesheet"/>
+			  <li class="header">
+				<div class="p-20">
+					<div class="flexbox">
+						<div>
+							<h4 class="mb-0 mt-0">Notifications</h4>
+						</div>
+						<div>
+							<a href="#" class="text-danger">Clear All</a>
+						</div>
+					</div>
+				</div>
+			  </li>
 
-   <link href="css/bootstrap.min.css" rel="stylesheet">
-
-   <!-- Template Stylesheet -->
-   <link href="css/style.css" rel="stylesheet"/>
-</head>
-
-<body  >
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
-    </div>
-    <!-- Spinner End -->
-
-
-
-    <!-- Navbar Start -->
-    <div  class="container-fluid position-relative p-0" >
-
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="/" class="navbar-brand p-0">
-                <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Logo</h1>
+			  <li>
+				<!-- inner menu: contains the actual data -->
+				<ul class="menu sm-scrol">
+				  <li>
+					<a href="#">
+					  <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem 
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+					  <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
+					</a>
+				  </li>
+				</ul>
+			  </li>
+			  <li class="footer">
+				  <a href="#">View all</a>
+			  </li>
+			</ul>
+		  </li>	
+		  
+         		  
+	      <!-- User Account-->
+          <li class="dropdown user user-menu">
+            <a href="#" class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent py-0 no-shadow" data-bs-toggle="dropdown" title="User">
+				<div class="d-flex pt-5">
+					<div class="text-end me-10">
+						<p class="pt-5 fs-14 mb-0 fw-700 text-primary">Johen Doe</p>
+						<small class="fs-10 mb-0 text-uppercase text-mute">Admin</small>
+					</div>
+					<img src="/images/avatar/avatar-1.png" class="avatar rounded-10 bg-primary-light h-40 w-40" alt="" />
+				</div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a th:href="@{/agences}" class="nav-item nav-link">Agences</a>
-                    <a th:href="@{/clients}" class="nav-item nav-link active">Clients</a>                    
-                    <a th:href="@{/utilisateurs}" class="nav-item nav-link">Utilisateurs</a>
-                    <div class="dropdown nav-item nav-link">
-                        <a th:href="@{/}" class="dropdown-toggle text-light" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Abattements
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="abattements">Liste des abattements</a></li>
-                            <li><a class="dropdown-item" href="abattement">Effectuer un abattement</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="parametres">Gestions des Paramètres</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>                
-            </div>
-        </nav>        
+            <ul class="dropdown-menu animated flipInX">
+              <li class="user-body">
+				 <a class="dropdown-item" href="#"><i class="ti-user text-muted me-2"></i> Profile</a>
+				 <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i> My Wallet</a>
+				 <a class="dropdown-item" href="#"><i class="ti-settings text-muted me-2"></i> Settings</a>
+				 <div class="dropdown-divider"></div>
+				 <a class="dropdown-item" href="#"><i class="ti-lock text-muted me-2"></i> Logout</a>
+              </li>
+            </ul>
+          </li>	
+			
+        </ul>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+		<div class="help-bt">
+			
+		</div>
+	  	<div class="multinav">
+		  <div class="multinav-scroll" style="height: 100%;">	
+			  <!-- sidebar menu-->
+			  <ul class="sidebar-menu" data-widget="tree">			
+				<li class="">
+				  <a th:href="@{/}">
+					<i data-feather="monitor"></i>
+					<span>Dashboard</span>					
+				  </a>
+				</li>
+				<li>
+				  <a th:href="@{/agences}">
+					<i data-feather="calendar"></i>
+					<span>Agences</span>
+				  </a>
+				</li>
+				<li class="active">
+					<a th:href="@{/clients}">
+					  <i data-feather="package"></i>
+					  <span>Clients</span>
+					</a>
+				  </li>			
+				<li class="">
+				  <a th:href="@{/utilisateurs}">
+					<i data-feather="users"></i>
+					<span>Utilisateur</span>					
+				  </a>				 
+				</li>				
+				<li class="treeview ">
+                    <a href="#">
+                      <i data-feather="activity"></i>
+                      <span>Abattement</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a th:href="@{/abattement}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Nouveau</a></li>
+                      <li><a th:href="@{/abattements}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Liste</a></li>
+                    </ul>
+                </li>		
+				<li class="">
+				  <a th:href="@{/parametres}">
+					<i data-feather="inbox"></i>
+					<span>Paramètres</span>
+				  </a>					
+				</li>				 
+			  </ul>
+			  
+			  <div class="sidebar-widgets">
+				  <div class="mx-25 mb-30 pb-20 side-bx bg-primary-light rounded20">
+					<div class="text-center">
+						<img src="/images/svg-icon/color-svg/custom-17.svg" class="sideimg p-5" alt="">
+						<h4 class="title-bx text-primary">Make an Appointments</h4>
+						<a href="#" class="py-10 fs-14 mb-0 text-primary">
+							Best Helth Care here <i class="mdi mdi-arrow-right"></i>
+						</a>
+					</div>
+				  </div>
+				<div class="copyright text-center m-25">
+					<p><strong class="d-block">Rhythm Admin Dashboard</strong> © <script>document.write(new Date().getFullYear())</script> All Rights Reserved</p>
+				</div>
+			  </div>
+		  </div>
+		</div>
+    </section>
+  </aside>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->	  
+		<div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="me-auto">
+					<h4 class="page-title">Startup</h4>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Clients</li>
+								<li class="breadcrumb-item active" aria-current="page">Liste</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				
+			</div>
+		</div>
 
-        <div class="container-fluid bg-primary bg-header" >
-            <div class="row">
-                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Liste des clients</h1>
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Navbar End -->
+		<!-- Main content -->
+		<section class="content">
+		  <div class="row">
+			<div class="col-xl-12 col-lg-9 col-12">
+				<div class="box">
+					<div class="box-header with-border">						
+						<h4 class="box-title col-xl-10">Liste Clients </h4>
+						<button class="btn btn-sm btn-primary col-xl-2 float-end" data-toggle="modal" data-target="#myModal">Nouveau client</button>
+						<h6 class="box-subtitle">Export Invoice List to Copy, CSV, Excel, PDF & Print</h6>
+					</div>
+					<div class="box-body">						
+						<div class="table-responsive">
 
-
-    <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Full Screen Search End -->
-
-
-    <!-- Pricing Plan Start -->
-    <div ng-controller="clientController"  class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">            
-            <div class="row g-0">
-                
-                <div class="col-lg-12 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">LISTE 
-                            <button class="btn btn-success float-end" data-toggle="modal" data-target="#myModal">
-                                Ajouter un client
-                            </button></h4>
-                            <!-- <small class="text-uppercase">Liste des clients -->
-                            </small>
-                            
-                        </div>
-                        <div class="p-5 pt-3">
-                            <table id="example" class="table table-striped" style="width:100%">
-                                <thead>
+							<table id="example" class="table table-lg invoice-archive">
+								<thead>
                                     <tr>
                                         <th>Index</th>
                                         <th>Numeo OP</th>
@@ -140,8 +281,8 @@
                                         <th>Localité</th>
                                         <th>Actions</th>
                                     </tr>
-                                </thead>
-                                <tbody>
+								</thead>
+								<tbody  >
                                     <tr data-ng-repeat="client in listeClients track by $index">
                                         <td>{{$index+1}}</td>
                                         <td>{{client.numeroOp}}</td>
@@ -151,163 +292,129 @@
                                         <td>{{client.zone}}</td>
                                         <td>{{client.ville}}</td>
                                         <td>{{client.localite}}</td>
-                                        <td >
-                                            <button class="btn btn-sm btn-secondary" ng-click="findClientById(client.id)"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-sm btn-danger" ng-click="deleteClient(client.id)"><i class="bi bi-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Index</th>
-                                        <th>Numeo OP</th>
-                                        <th>Agence</th>
-                                        <th>Banque</th>
-                                        <th>Caisse</th>
-                                        <th>Zone</th>
-                                        <th>Ville</th>
-                                        <th>Localité</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+										<td class="text-center">
+											<div class="list-icons d-inline-flex">
+												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findClientById(client.id)"><i class="fa fa-edit"></i></a>
+												<a href="#" class="list-icons-item btn btn-danger m-5" ng-click="deleteClient(client.id)"><i class="fa fa-trash"></i></a>
+												
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 
-          <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-        
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		  </div>
+		</section>
+		<!-- /.content -->
+	  </div>
+  </div>
+  <!-- /.content-wrapper -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">Nouveau client</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <div class="control">
-                        <div class="row g-2 mb-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <select class="form-control select" id="agence" name="agence" ng-model="clientMasterDTO.agence.id"> 
-                                        <option ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
-                                    </select>
-                                    
-                                    <label for="agence">Agence </label>
-                                </div>
-                            </div>
+			<form action="#" method="POST" enctype="multipart/form-data">
 
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="numero_op" type="text" class="form-control"  id="numero_op" placeholder="Numero OP" required ng-model="clientMasterDTO.numeroOp"  autofocus>
-                                    <label for="numero_op">Numero OP</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-2 mb-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="banque" type="text" class="form-control  "  id="banque" placeholder="Banque" required   ng-model="clientMasterDTO.banque"  autofocus>
-                                    <label for="banque">Banque</label>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="caisse" type="text" class="form-control"  id="caisse" placeholder="Caisse" required   ng-model="clientMasterDTO.caisse"  autofocus>
-                                    <label for="caisse">Caisse</label>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row g-2 mb-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="zone" type="text" class="form-control"  id="zone" placeholder="Zone" required   ng-model="clientMasterDTO.zone"  autofocus>
-                                    <label for="zone">Zone</label>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input name="localite" type="text" class="form-control  "  id="localite" placeholder="Localité" required   ng-model="clientMasterDTO.localite"  autofocus>
-                                    <label for="localite">Localité</label>
-                                </div>
-                            </div>
-                        </div>
-                        
+                <div class="modal-header">
+                    <h4 class="modal-title">{{clientMasterDTO?"Modifier le client "+clientMasterDTO.numeroOp : "Nouveau Client"}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
                 </div>
-                    
-                </form>
-            </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <div class="row g-2 mb-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select class="form-control select" id="agence" name="agence" ng-model="clientMasterDTO.agence.id"> 
+                                    <option ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
+                                </select>
+                                
+                                <label for="agence">Agence </label>
+                            </div>
+                        </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success me-10" ng-click="valider()">Enregistrer</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-                
-            </div>
-            
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input name="numero_op" type="text" class="form-control"  id="numero_op" placeholder="Numero OP" required ng-model="clientMasterDTO.numeroOp"  autofocus>
+                                <label for="numero_op">Numero OP</label>
+                            </div>
+                        </div>
 
-            
-        </div>
-    </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input name="banque" type="text" class="form-control  "  id="banque" placeholder="Banque" required   ng-model="clientMasterDTO.banque"  autofocus>
+                                <label for="banque">Banque</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input name="caisse" type="text" class="form-control"  id="caisse" placeholder="Caisse" required   ng-model="clientMasterDTO.caisse"  autofocus>
+                                <label for="caisse">Caisse</label>
+                            </div>
+                        </div>
 
-    </div>
-    <!-- Pricing Plan End -->
-
-
-
-
-    <!-- Quote Start -->
-    
-    <!-- Vendor End -->
-    
-
-    <!-- Footer Start -->
-    
-    <div class="container-fluid text-white" style="background: #061429;">
-        <div class="container text-center">
-            <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-6">
-                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"> Site Name</a>. All Rights Reserved. 
-						
-						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed by <a class="text-white border-bottom" href="#">Next Generation Services</a></p>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input name="zone" type="text" class="form-control"  id="zone" placeholder="Zone" required   ng-model="clientMasterDTO.zone"  autofocus>
+                                <label for="zone">Zone</label>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <input name="localite" type="text" class="form-control  "  id="localite" placeholder="Localité" required   ng-model="clientMasterDTO.localite"  autofocus>
+                                <label for="localite">Localité</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer col-md-12">
+                    <button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
+                    <button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+                </div>
+		    </form>
         </div>
     </div>
-    <!-- Footer End -->
 
+</div>
 
-      
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+ 
+   <footer class="main-footer">
+    <div class="pull-right d-none d-sm-inline-block">
+        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+		  <li class="nav-item">
+			<a class="nav-link" href="javascript:void(0)">FAQ</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#">Purchase Now</a>
+		  </li>
+		</ul>
+    </div>
+	  &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
 
-    <!-- Template Javascript -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-    <script src="/js/clientController.js"></script>
-    <script src="js/main.js"></script>
-    <script >
-        new DataTable('#example');
-    </script>
+	
+	<!-- Vendor JS -->
+	<script src="js/vendors.min.js"></script>
+    <script src="/js/feather.min.js"></script>	
+	<script src="/js/datatables.min.js"></script>
+	
+	<!-- Rhythm Admin App -->
+	<script src="/js/template.js"></script>
+	<script src="/js/clientController.js"></script>
+	<script src="/js/data-table.js"></script>
+	
+	
 </body>
-
 </html>
