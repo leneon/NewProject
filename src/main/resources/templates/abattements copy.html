@@ -145,20 +145,24 @@
                           <table id="example" class="table table-lg invoice-archive">
                               <thead>
                                   <tr>
-                                      <th>#</th>
-                                      <th>Period</th>
-                                      <th>Issued to</th>
-                                      <th>Status</th>
-                                      <th>Issue date</th>
+                                      <th>index</th>
+                                      <th>Date</th>
+                                      <th>Client(N° OP)</th>
+                                      <th>Vente</th>
+                                      <th>Paiement</th>
                                       <th>Due date</th>
-                                      <th>Amount</th>
+                                      <th>Solde à verser</th>
+                                      <th>parametres d'abattement</th>
+                                      <th>Reg</th>
+                                      <th>Non Reg</th>
+                                      <th>Total</th>
                                       <th class="text-center">Actions</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <td>#0025</td>
-                                      <td>February 2018</td>
+                                  <tr data-ng-repeat="abattement in listeAbattements track by $index">
+                                      <td>{{$index+1}}</td>
+                                      <td>{{ abattement.date }}</td>
                                       <td>
                                           <h6 class="mb-0">
                                               <a href="#">Jacob</a>
