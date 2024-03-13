@@ -316,61 +316,61 @@
 	  </div>
   </div>
   <!-- /.content-wrapper -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-			<form action="#" method="POST" enctype="multipart/form-data">
+  	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<form action="#" method="POST" enctype="multipart/form-data">
 
-            <div class="modal-header">
-                <h4 class="modal-title">Nouvelle Agence</h4>
-                <button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-					<div class="row g-2 mb-2">
-						<div class="col-md">
-							<div class="form-floating">
-								<input required ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
-								<label for="nom">Nom</label>
+				<div class="modal-header">
+					<h4 class="modal-title">Nouvelle Agence</h4>
+					<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+						<div class="row g-2 mb-2">
+							<div class="col-md">
+								<div class="form-floating">
+									<input required ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+									<label for="nom">Nom</label>
+								</div>
+							</div>
+							<div class="col-md">
+								<div class="form-floating">
+									<input required ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+									<label for="adresse">Adresse</label>
+								</div>
 							</div>
 						</div>
-						<div class="col-md">
-							<div class="form-floating">
-								<input required ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
-								<label for="adresse">Adresse</label>
+						<div class="row g-2 mb-2">
+							<div class="col-md">
+								<div class="form-floating">
+									<input required ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+									<label for="ville">Ville</label>
+								</div>
+							</div>
+							<div class="col-md">
+								<div class="form-floating">
+									<input required ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
+									<label for="localisation">Localisation</label>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row g-2 mb-2">
-						<div class="col-md">
-							<div class="form-floating">
-								<input required ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
-								<label for="ville">Ville</label>
-							</div>
-						</div>
-						<div class="col-md">
-							<div class="form-floating">
-								<input required ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
-								<label for="localisation">Localisation</label>
-							</div>
-						</div>
-					</div>
-                   
-            </div>
+					
+				</div>
 
-			<!-- Modal Footer -->
-			<div class="modal-footer col-md-12">
-				<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
-				<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+				<!-- Modal Footer -->
+				<div class="modal-footer col-md-12">
+					<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
+					<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+				</div>
+
 			</div>
-
+			</form>
+			</div>
 		</div>
-		</form>
-        </div>
-    </div>
 
-</div>
+	</div>
 
  
    <footer class="main-footer">

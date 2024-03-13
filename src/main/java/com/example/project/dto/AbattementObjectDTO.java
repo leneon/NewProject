@@ -10,6 +10,7 @@ public class AbattementObjectDTO {
     private Long id;
     private ClientDTO client;
     private Date date;
+    private Integer journee;
     private Double vente;
     private Double solde_a_verser;
     private Double paiement;
@@ -121,7 +122,7 @@ public class AbattementObjectDTO {
 
 
 
-    public void setParametres(List parametres) {
+    public void setParametres(List<String>  parametres) {
         this.parametres = parametres;
     }
 
@@ -136,6 +137,20 @@ public class AbattementObjectDTO {
     public void setHeure(Time heure) {
         this.heure = heure;
     }
+
+
+
+    public Integer getJournee() {
+        return journee;
+    }
+
+
+
+    public void setJournee(Integer journee) {
+        this.journee = journee;
+    }
+
+
 
 
     

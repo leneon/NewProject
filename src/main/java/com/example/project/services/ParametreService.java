@@ -24,7 +24,7 @@ public class ParametreService {
     public List<Parametre> getAllParametres() {
         return parametreRepository.findAll();
     }
-       public List<ParametreDTO> getAllParametresDTO() {
+    public List<ParametreDTO> getAllParametresDTO() {
         return this.getAllParametres().stream()
                 .map(this::mappedEntityToDTO)
                 .collect(Collectors.toList());
@@ -62,7 +62,7 @@ public class ParametreService {
         parametreDTO.setSlug(this.format(param.getTitre().toLowerCase().replaceAll("\\s", "_")));
         parametreDTO.setTitre(param.getTitre());
         parametreDTO.setType(param.getType());
-        parametreDTO.setValeur(param.getValeur());
+        parametreDTO.settaux(param.gettaux());
 
         return parametreDTO;            
     }

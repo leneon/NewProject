@@ -20,12 +20,12 @@ public class Parametre {
     @Column
     private String type;
     @Column
-    private Float valeur;
-    public Parametre(long id, String titre, String type, Float valeur) {
+    private Float taux;
+    public Parametre(long id, String titre, String type, Float taux) {
         this.id = id;
         this.titre = titre;
         this.type = type;
-        this.valeur = valeur;
+        this.taux = taux;
     }
     public Parametre() {
     }
@@ -47,11 +47,11 @@ public class Parametre {
     public void setType(String type) {
         this.type = type;
     }
-    public Float getValeur() {
-        return valeur;
+    public Float gettaux() {
+        return taux;
     }
-    public void setValeur(Float valeur) {
-        this.valeur = valeur;
+    public void settaux(Float taux) {
+        this.taux = taux;
     }
 
 

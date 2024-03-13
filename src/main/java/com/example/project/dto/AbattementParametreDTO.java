@@ -1,13 +1,23 @@
 package com.example.project.dto;
 
+import com.example.project.entities.AbattementParametre;
+import com.example.project.entities.Parametre;
+
 public class AbattementParametreDTO {
     private Long id;
-    private String abattement;
-    private String parametre;
+    private Long abattement;
+    private ParametreDTO parametre;
     private String valeur;
     private Double montantAbattement;
     
     public AbattementParametreDTO() {
+    }
+    public AbattementParametreDTO(AbattementParametre ab) {
+        this.id = ab.getId();
+        this.abattement = ab.getAbattement().getId();
+        this.parametre = new ParametreDTO(ab.getParametre());
+        this.valeur = ab.getvaleur();
+        this.montantAbattement = ab.getMontantAbattement();
     }
     public Long getId() {
         return id;
@@ -15,22 +25,22 @@ public class AbattementParametreDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getAbattement() {
+    public Long getAbattement() {
         return abattement;
     }
-    public void setAbattement(String abattement) {
+    public void setAbattement(Long abattement) {
         this.abattement = abattement;
     }
-    public String getParametre() {
+    public ParametreDTO getParametre() {
         return parametre;
     }
-    public void setParametre(String parametre) {
+    public void setParametre(ParametreDTO parametre) {
         this.parametre = parametre;
     }
-    public String getValeur() {
+    public String getvaleur() {
         return valeur;
     }
-    public void setValeur(String valeur) {
+    public void setvaleur(String valeur) {
         this.valeur = valeur;
     }
     public Double getMontantAbattement() {
@@ -39,6 +49,6 @@ public class AbattementParametreDTO {
     public void setMontantAbattement(Double montantAbattement) {
         this.montantAbattement = montantAbattement;
     }
-    
+
     
 }

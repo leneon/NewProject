@@ -274,7 +274,7 @@
                                         <th>Index</th>
                                         <th>Titre</th>
                                         <th>Type</th>
-                                        <th>Valeur</th>
+                                        <th>Taux</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
 								</thead>
@@ -283,7 +283,7 @@
                                         <td>{{$index+1}}</td>
                                         <td>{{parametre.titre}}</td>
                                         <td>{{parametre.type}}</td>
-                                        <td>Ab {{parametre.valeur}} %</td>
+                                        <td>Ab {{parametre.taux}} %</td>
 										<td class="text-center">
 											<div class="list-icons d-inline-flex">
 												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findParametreById(parametre.id)"><i class="fa fa-edit"></i></a>
@@ -306,61 +306,61 @@
 	  </div>
   </div>
   <!-- /.content-wrapper -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-			<form action="#" method="POST" enctype="multipart/form-data">
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<form action="#" method="POST" enctype="multipart/form-data">
 
-            <div class="modal-header">
-                <h4 class="modal-title">{{parametreDTO?"Modifier "+parametreDTO.titre:"Nouvelle paramètre"}}</h4>
-                <button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <div class="row mb-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="titre" type="text" class="form-control"  id="titre" placeholder="Titre" required   ng-model="parametreDTO.titre"  autofocus>
-                            <label for="titre">Titre</label>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row g-2 mb-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <select class="form-control select" id="type" name="type" ng-model="parametreDTO.type"> 
-                                <option value="Montant">Montant</option>
-                                <option value="Heure">Heure</option>
-                            </select>
-                            <label for="type">Type </label>
+				<div class="modal-header">
+					<h4 class="modal-title">{{parametreDTO?"Modifier "+parametreDTO.titre:"Nouvelle paramètre"}}</h4>
+					<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<div class="row mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="titre" type="text" class="form-control"  id="titre" placeholder="Titre" required   ng-model="parametreDTO.titre"  autofocus>
+								<label for="titre">Titre</label>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<select class="form-control select" id="type" name="type" ng-model="parametreDTO.type"> 
+									<option value="Montant">Montant</option>
+									<option value="Heure">Heure</option>
+								</select>
+								<label for="type">Type </label>
 
-                        </div>
-                    </div>
-              
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="valeur" type="number" class="form-control  "  id="valeur" placeholder="Valeur appliqué" required   ng-model="parametreDTO.valeur"  autofocus>
-                            <label for="valeur">Valeur appliqué en pourcentage</label>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
+							</div>
+						</div>
+				
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="taux" type="number" class="form-control  "  id="taux" placeholder="taux appliqué" required   ng-model="parametreDTO.taux"  autofocus>
+								<label for="taux">Taux appliqué en pourcentage</label>
+							</div>
+						</div>
+					
+					</div>
+				</div>
 
-			<!-- Modal Footer -->
-			<div class="modal-footer col-md-12">
-				<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
-				<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+				<!-- Modal Footer -->
+				<div class="modal-footer col-md-12">
+					<button type="button" ng-click="valider()" class="btn btn-success">Enregistrer</button>
+					<button type="reset" class="btn btn-primary" data-dismiss="modal" ng-click="modalHide()">Annuler</button>
+				</div>
+
 			</div>
-
+			</form>
+			</div>
 		</div>
-		</form>
-        </div>
-    </div>
 
-</div>
+	</div>
 
  
    <footer class="main-footer">

@@ -1,12 +1,13 @@
 var App = angular.module('myApp', []);
 
-App.controller('abattementsController', ['$scope','$http', function ($scope, $http) {
+App.controller('abattementController', ['$scope','$http', function ($scope, $http) {
   const appUrl = "api/abattements";
   const urlLoadAbattements = appUrl ;
   const urlDeleteAbattements = appUrl + "/delete";
   const urlFindAbattement = appUrl + "/find";
 
     $scope.listeabattements = [];
+    $scope.abattementParametre = null;
 
     // Fonction pour trouver une agence par son ID
     $scope.findAbattementById = function (id) {
@@ -76,6 +77,19 @@ App.controller('abattementsController', ['$scope','$http', function ($scope, $ht
             }
         });
     };
+
+$scope.showParametre = function(ap){
+    $scope.abattementParametre = ap;
+    console.log(ap);
+    $scope.modalShow();
+};
+
+$scope.modalShow = function(){
+    $('#myModal').modal('show');
+};
+$scope.modalHide = function(){
+    $('#myModal').modal('hide');
+};
 
 $scope.successSwal = function(string){
     swal({
