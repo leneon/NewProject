@@ -178,7 +178,7 @@ $scope.deleteAbattement = function (id) {
     if($scope.abattementMasterObjectDTO.heure)
         $scope.abattementMasterObjectDTO.heure = $scope.abattementMasterObjectDTO.heure.toISOString().substring(11, 19);
     // Vérifiez si les champs requis sont remplis
-    if (!$scope.abattementMasterObjectDTO.client || !$scope.abattementMasterObjectDTO.date || !$scope.abattementMasterObjectDTO.vente || !$scope.abattementMasterObjectDTO.paiement || !$scope.abattementMasterObjectDTO.journee) {
+    if (!$scope.abattementMasterObjectDTO.client || !$scope.abattementMasterObjectDTO.journee || !$scope.abattementMasterObjectDTO.date || !$scope.abattementMasterObjectDTO.vente || !$scope.abattementMasterObjectDTO.paiement || !$scope.abattementMasterObjectDTO.journee) {
         console.log("Veuillez remplir tous les champs obligatoires.");
         swal({
             title: "Erreur",

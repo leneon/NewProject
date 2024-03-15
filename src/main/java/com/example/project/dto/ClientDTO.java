@@ -3,6 +3,7 @@ package com.example.project.dto;
 import java.util.Date;
 
 import com.example.project.entities.Agence;
+import com.example.project.entities.Client;
 
 public class ClientDTO {
     private long id;
@@ -13,8 +14,16 @@ public class ClientDTO {
     private Agence agence;
     private String caisse;
     private Date datecreation;
+
+
     public ClientDTO() {
     }
+
+    public ClientDTO(Client client){
+        this.id = client.getId();
+        this.numeroOp = client.getNumeroOp();
+    }
+
     public long getId() {
         return id;
     }

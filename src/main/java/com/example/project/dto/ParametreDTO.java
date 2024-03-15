@@ -1,25 +1,27 @@
 package com.example.project.dto;
 
+import com.example.project.entities.Parametre;
+
 public class ParametreDTO {
     private Long id;
     private String titre;
     private String type;
-    private Float valeur;
+    private Float taux;
     private String slug;
 
     
-    public ParametreDTO(Long id, String titre, String type, Float valeur, String slug) {
+    public ParametreDTO(Long id, String titre, String type, Float taux, String slug) {
         this.id = id;
         this.titre = titre;
         this.type = type;
-        this.valeur = valeur;
+        this.taux = taux;
         this.slug = slug;
     }
-    public ParametreDTO(Long id, String titre, String type, Float valeur) {
-        this.id = id;
-        this.titre = titre;
-        this.type = type;
-        this.valeur = valeur;
+    public ParametreDTO(Parametre parametre) {
+        this.id = parametre.getId();
+        this.titre = parametre.getTitre();
+        this.type = parametre.getType();
+        this.taux = parametre.gettaux();
     }
     public ParametreDTO() {
     }
@@ -41,11 +43,11 @@ public class ParametreDTO {
     public void setType(String type) {
         this.type = type;
     }
-    public Float getValeur() {
-        return valeur;
+    public Float gettaux() {
+        return taux;
     }
-    public void setValeur(Float valeur) {
-        this.valeur = valeur;
+    public void settaux(Float taux) {
+        this.taux = taux;
     }
     public String getSlug() {
         return slug;

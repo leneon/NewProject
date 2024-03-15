@@ -39,9 +39,13 @@ public class AbattementResource {
     private AbattementParametreRepository abattementParametreRepository;
 
 
+    // @GetMapping
+    // public List<Abattement> getAllAbattements() {
+    //     return abattementService.getAllAbattements();
+    // }
     @GetMapping
-    public List<Abattement> getAllAbattements() {
-        return abattementService.getAllAbattements();
+    public List<AbattementDTO> getAllAbattementsDTO() {
+        return abattementService.getAllAbattementsDTO();
     }
 
     @GetMapping("/find/{id}")
@@ -68,8 +72,8 @@ public class AbattementResource {
         abattementParametre.setParametre(parametreService.getParametreById(parametreDTO.getId()));
         parametres.stream().forEach(str->{
             if(str.equals(parametreDTO.getId().toString())){
-                abattementParametre.setMontantAbattement((abattement.getVente()*parametreDTO.getValeur())/100);
-                abattementParametre.setValeur("retards".equals(str) && parametreDTO.getSlug().equals(str)? aObjectDTO.getHeure().toString() : abattement.getSoldeAVerser().toString());
+                abattementParametre.setMontantAbattement((abattement.getVente()*parametreDTO.gettaux())/100);
+                abattementParametre.setvaleur("retards".equals(str) && parametreDTO.getSlug().equals(str)? aObjectDTO.getHeure().toString() : abattement.getSoldeAVerser().toString());
             }
         });     
         
@@ -82,6 +86,7 @@ public class AbattementResource {
         Abattement abattement = new Abattement();
         abattement.setClient(new Client(abattementObjectDTO.getClient().getId()));
         abattement.setDate(abattementObjectDTO.getDate());
+        abattement.setJournee(abattementObjectDTO.getJournee());
         abattement.setNonReg(abattementObjectDTO.getSolde_a_verser());
         abattement.setSoldeAVerser(abattementObjectDTO.getSolde_a_verser());
         abattement.setPaiement(abattementObjectDTO.getPaiement());

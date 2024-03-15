@@ -10,12 +10,20 @@ private Long id;
 private ClientDTO client;
 private Date date;
 private Double vente;
-private Double solde_a_verser;
+private Integer journee;
+private Double soldeAVerser;
 private Double paiement;
 private Double reg;
 private Double nonReg;
 private Double total;
-private List<AbattementParametreDTO> abattementParametreDTO;
+private List<AbattementParametreDTO> listeAbattementParametres;
+
+public Integer getJournee() {
+    return journee;
+}
+public void setJournee(Integer journee) {
+    this.journee = journee;
+}
 public Long getId() {
     return id;
 }
@@ -40,11 +48,11 @@ public Double getVente() {
 public void setVente(Double vente) {
     this.vente = vente;
 }
-public Double getSolde_a_verser() {
-    return solde_a_verser;
+public Double getSoldeAVerser() {
+    return soldeAVerser;
 }
-public void setSolde_a_verser(Double solde_a_verser) {
-    this.solde_a_verser = solde_a_verser;
+public void setSoldeaverser(Double soldeAVerser) {
+    this.soldeAVerser = soldeAVerser;
 }
 public Double getPaiement() {
     return paiement;
@@ -70,11 +78,11 @@ public Double getTotal() {
 public void setTotal(Double total) {
     this.total = total;
 }
-public List<AbattementParametreDTO> getAbattementParametreDTO() {
-    return abattementParametreDTO;
+public List<AbattementParametreDTO> getListeAbattementParametres() {
+    return listeAbattementParametres;
 }
-public void setAbattementParametreDTO(List<AbattementParametreDTO> abattementParametreDTO) {
-    this.abattementParametreDTO = abattementParametreDTO;
+public void setListeAbattementParametres(List<AbattementParametreDTO> listeAbattementParametres) {
+    this.listeAbattementParametres = listeAbattementParametres;
 }
 
 

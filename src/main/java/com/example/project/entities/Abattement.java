@@ -24,6 +24,8 @@ public class Abattement {
     private long id;
     @Column
     private Date date;
+    @Column
+    private Integer journee;
     @ManyToOne
     @JoinColumn
     private Client client;
@@ -110,6 +112,18 @@ public class Abattement {
     }
     public void setTotal(Double total) {
         this.total = total;
+    }
+    public Integer getJournee() {
+        return journee;
+    }
+    public void setJournee(Integer journee) {
+        this.journee = journee;
+    }
+    public List<AbattementParametre> getListAbatttementParametres() {
+        return listAbatttementParametres;
+    }
+    public void setListAbatttementParametres(List<AbattementParametre> listAbatttementParametres) {
+        this.listAbatttementParametres = listAbatttementParametres;
     }
     
     

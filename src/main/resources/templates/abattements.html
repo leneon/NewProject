@@ -33,14 +33,10 @@
 		<!-- Logo -->
 		<a href="index.html" class="logo">
 		  <!-- logo-->
-		  <div class="logo-mini w-50">
-			  <span class="light-logo"><img src="/images/logo-letter.png" alt="logo"></span>
-			  <span class="dark-logo"><img src="/images/logo-letter.png" alt="logo"></span>
-		  </div>
-		  <div class="logo-lg">
-			  <span class="light-logo"><img src="/images/logo-dark-text.png" alt="logo"></span>
-			  <span class="dark-logo"><img src="/images/logo-light-text.png" alt="logo"></span>
-		  </div>
+			<div class="logo-lg">
+				<span class="light-logo"><img src="/images/logo.png" alt="logo"></span>
+				<span class="dark-logo"><img src="/images/logo.png" alt="logo"></span>
+			</div>
 		</a>	
 	</div>  
     <!-- Header Navbar -->
@@ -59,78 +55,7 @@
 		
       <div class="navbar-custom-menu r-side">
         <ul class="nav navbar-nav">	
-			<li class="btn-group nav-item d-lg-inline-flex d-none">
-				<a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen btn-warning-light" title="Full Screen">
-					<i data-feather="maximize"></i>
-			    </a>
-			</li>
-		  <!-- Notifications -->
-		  <li class="dropdown notifications-menu">
-			<a href="#" class="waves-effect waves-light dropdown-toggle btn-info-light" data-bs-toggle="dropdown" title="Notifications">
-			  <i data-feather="bell"></i>
-			</a>
-			<ul class="dropdown-menu animated bounceIn">
 
-			  <li class="header">
-				<div class="p-20">
-					<div class="flexbox">
-						<div>
-							<h4 class="mb-0 mt-0">Notifications</h4>
-						</div>
-						<div>
-							<a href="#" class="text-danger">Clear All</a>
-						</div>
-					</div>
-				</div>
-			  </li>
-
-			  <li>
-				<!-- inner menu: contains the actual data -->
-				<ul class="menu sm-scrol">
-				  <li>
-					<a href="#">
-					  <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem 
-					</a>
-				  </li>
-				  <li>
-					<a href="#">
-					  <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
-					</a>
-				  </li>
-				</ul>
-			  </li>
-			  <li class="footer">
-				  <a href="#">View all</a>
-			  </li>
-			</ul>
-		  </li>	
-		  
-         		  
 	      <!-- User Account-->
           <li class="dropdown user user-menu">
             <a href="#" class="waves-effect waves-light dropdown-toggle w-auto l-h-12 bg-transparent py-0 no-shadow" data-bs-toggle="dropdown" title="User">
@@ -166,7 +91,7 @@
 			
 		</div>
 	  	<div class="multinav">
-		  <div class="multinav-scroll" style="height: 100%;">	
+		  <div class="multinav-scroll" style="height: 100%;">
 			  <!-- sidebar menu-->
 			  <ul class="sidebar-menu" data-widget="tree">			
 				<li class="">
@@ -188,9 +113,9 @@
 					</a>
 				  </li>			
 				<li class="">
-				  <a th:href="@{/utilisateurs}">
+				  <a th:href="@{/abattements}">
 					<i data-feather="users"></i>
-					<span>Utilisateur</span>					
+					<span>Abattement</span>					
 				  </a>				 
 				</li>				
 				<li class="treeview active">
@@ -213,21 +138,6 @@
                     </a>					
                 </li>				 
 			  </ul>
-			  
-			  <div class="sidebar-widgets">
-				  <div class="mx-25 mb-30 pb-20 side-bx bg-primary-light rounded20">
-					<div class="text-center">
-						<img src="/images/svg-icon/color-svg/custom-17.svg" class="sideimg p-5" alt="">
-						<h4 class="title-bx text-primary">Make an Appointments</h4>
-						<a href="#" class="py-10 fs-14 mb-0 text-primary">
-							Best Helth Care here <i class="mdi mdi-arrow-right"></i>
-						</a>
-					</div>
-				  </div>
-				<div class="copyright text-center m-25">
-					<p><strong class="d-block">Rhythm Admin Dashboard</strong> © <script>document.write(new Date().getFullYear())</script> All Rights Reserved</p>
-				</div>
-			  </div>
 		  </div>
 		</div>
     </section>
@@ -271,33 +181,47 @@
 							<table id="example" class="table table-lg invoice-archive">
 								<thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Period</th>
-                                        <th>Issued to</th>
-                                        <th>Status</th>
-                                        <th>Issue date</th>
-                                        <th>Due date</th>
-                                        <th>Amount</th>
+                                        <th>Index</th>
+                                        <th>Date</th>
+                                        <th>Journée</th>
+                                        <th>N°OP</th>
+                                        <th>Vente</th>
+                                        <th>Paiement</th>
+                                        <th class="col-1">SoldeAVerser</th>
+                                        <th>Paramètres</th>
+                                        <th>Reg</th>
+                                        <th>NonReg</th>
+                                        <th>Total</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
 								</thead>
 								<tbody >
-                                    <!-- <tr data-ng-repeat="utilisateur in listeUtilisateurs track by $index">
+                                    <tr data-ng-repeat="abattement in listeAbattements track by $index">
                                         <td>{{$index+1}}</td>
-                                        <td>{{utilisateur.username}}</td>
-                                        <td>{{utilisateur.nom}}</td>
-                                        <td>{{utilisateur.prenom}}</td>
-                                        <td>{{utilisateur.agence.nom}}</td>
-                                        <td>{{utilisateur.telephone}}</td>
-                                        <td>{{utilisateur.email}}</td>
+                                        <td>{{abattement.date}}</td>
+                                        <td>{{abattement.journee}}</td>
+                                        <td>{{abattement.client.numeroOp}}</td>
+                                        <td>{{abattement.vente}}</td>
+                                        <td>{{abattement.paiement}}</td>
+                                        <td >{{abattement.soldeAVerser}}</td>
+                                        <td class="col-3 ">
+											<span ng-repeat="ap in abattement.listeAbattementParametres">
+												<a  ng-click="showParametre(ap)" ng-if="ap.montantAbattement" href="#"  class="mb-1 badge badge-success">
+													{{ ap.parametre.titre }}
+												</a>
+											</span>
+										</td>
+                                        <td>{{abattement.reg}}</td>
+                                        <td>{{abattement.nonReg}}</td>
+                                        <td>{{abattement.total}}</td>
                                         <td class="text-center">
 											<div class="list-icons d-inline-flex">
-												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findUtilisateurById(utilisateur.id)"><i class="fa fa-edit"></i></a>
-												<a href="#" class="list-icons-item btn btn-danger m-5" ng-click="deleteUtilisateur(utilisateur.id)"><i class="fa fa-trash"></i></a>
+												<a href="#" class="list-icons-item btn btn-primary btn m-5" ng-click="findAbattementById(abattement.id)"><i class="fa fa-edit"></i></a>
+												<a href="#" class="list-icons-item btn btn-danger m-5" ng-click="deleteAbattement(abattement.id)"><i class="fa fa-trash"></i></a>
 												
 											</div>
 										</td>
-									</tr> -->
+									</tr> 
 								</tbody>
 							</table>
 
@@ -312,67 +236,116 @@
 	  </div>
   </div>
   <!-- /.content-wrapper -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<form action="#" method="POST" enctype="multipart/form-data">
+
+				<div class="modal-header">
+					<h4 class="modal-title">Détails du parametre <span class="text-danger">{{abattementParametre.parametre.titre}}</span> </h4>
+					<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<div class="row mb-3">
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="titre" type="text" class="form-control"  id="titre" placeholder="Titre" required  ng-disabled="true"  ng-model="abattementParametre.parametre.titre"  autofocus>
+								<label for="titre">Titre</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="type" type="text" class="form-control"  id="type" placeholder="type" required  ng-disabled="true"  ng-model="abattementParametre.parametre.type"  autofocus>
+								<label for="type">Type</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="taux" type="text" class="form-control"  id="taux" placeholder="Taux" required  ng-disabled="true"  ng-model="abattementParametre.parametre.taux"  autofocus>
+								<label for="taux">Taux</label>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="valeur" type="text" class="form-control"  id="valeur" placeholder="valeur" required  ng-disabled="true"  ng-model="abattementParametre.valeur"  autofocus>
+								<label for="type">Valeur </label>
+
+							</div>
+						</div>
+				
+						<div class="col-md">
+							<div class="form-floating">
+								<input name="montantAbattement" type="number" class="form-control  "  id="montantAbattement" placeholder="Valeur appliqué" required  ng-disabled="true"  ng-model="abattementParametre.montantAbattement"  autofocus>
+								<label for="montantAbattement">Montant Abattement</label>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+
+				<!-- Modal Footer -->
+				<div class="modal-footer col-md-12">
+					<button type="button" class="btn btn-success" data-dismiss="modal" ng-click="modalHide()">OK</button>
+				</div>
+
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
+
+ 
+
+</div>
+<!-- ./wrapper -->
+
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Modal Header -->
 			<form action="#" method="POST" enctype="multipart/form-data">
 
-            <div class="modal-header">
-                <h4 class="modal-title">{{utilisateurMasterDTO?"Modifier "+utilisateurMasterDTO.nom:"Nouvel Utilisateur"}}</h4>
-                <button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
-            </div>
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <div class="row g-2 mb-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="nom" type="text" class="form-control  "  id="nom" placeholder="Nom" required   ng-model="utilisateurMasterDTO.nom"  autofocus>
-                            <label for="nom">Nom</label>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="prenoms" type="text" class="form-control"  id="prenoms" placeholder="Prénoms" required   ng-model="utilisateurMasterDTO.prenoms"  autofocus>
-                            <label for="prenoms">Prénoms</label>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row g-2 mb-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <select class="form-control select" id="agence" name="agence" ng-model="utilisateurMasterDTO.agence.id"> 
-                                <option data-ng-repeat="agence in listeAgences" value="{{agence.id}}">{{agence.nom}}</option>
-                            </select>
-                            
-                            <label for="agence">Agence </label>
-                        </div>
-                    </div>
-
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="username" type="text" class="form-control"  id="username" placeholder="Nom d'utilisateur" required ng-model="utilisateurMasterDTO.username"  autofocus>
-                            <label for="username">Nom d'utilisateur</label>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row g-2 mb-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="email" type="text" class="form-control"  id="email" placeholder="E-mail" required   ng-model="utilisateurMasterDTO.email"  autofocus>
-                            <label for="email">E-mail</label>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input name="telephone" type="text" class="form-control  "  id="telephone" placeholder="Téléphone" required   ng-model="utilisateurMasterDTO.telephone"  autofocus>
-                            <label for="telephone">Téléphone</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div class="modal-header">
+				<h4 class="modal-title">Détails du paramètre d'abattement : {{parametre.titre}}</h4>
+				<button type="button" class="close" data-dismiss="modal" ng-click="modalHide()">&times;</button>
+			</div>
+			<!-- Modal Body -->
+			<div class="modal-body">
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.nom" name="nom" type="text" class="form-control" id="nom" placeholder="Nom">
+								<label for="nom">Nom</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.adresse" name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse">
+								<label for="adresse">Adresse</label>
+							</div>
+						</div>
+					</div>
+					<div class="row g-2 mb-2">
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.ville" name="ville" type="text" class="form-control" id="ville" placeholder="Ville">
+								<label for="ville">Ville</label>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="form-floating">
+								<input requiredng-disabled="true"  ng-model="agenceMasterDTO.localisation" name="localisation" type="text" class="form-control" id="localisation" placeholder="Localisation">
+								<label for="localisation">Localisation</label>
+							</div>
+						</div>
+					</div>
+				
+			</div>
 
 			<!-- Modal Footer -->
 			<div class="modal-footer col-md-12">
@@ -382,27 +355,10 @@
 
 		</div>
 		</form>
-        </div>
-    </div>
+		</div>
+	</div>
 
 </div>
-
- 
-   <footer class="main-footer">
-    <div class="pull-right d-none d-sm-inline-block">
-        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
-		  <li class="nav-item">
-			<a class="nav-link" href="javascript:void(0)">FAQ</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="#">Purchase Now</a>
-		  </li>
-		</ul>
-    </div>
-	  &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.multipurposethemes.com/">Multipurpose Themes</a>. All Rights Reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
 
 	
 	<!-- Vendor JS -->

@@ -9,8 +9,8 @@ App.controller('parametreController', ['$scope','$http', function ($scope, $http
     const urlFindParametre = appUrl + "/find";
   
     $scope.listeParametres = [];
-    $scope.parametreDTO = { id: null, titre: null, type: null, valeur: null };
-    $scope.parametreMasterDTO = { id: null, titre: null, type: null, valeur: null };
+    $scope.parametreDTO = { id: null, titre: null, type: null, taux: null };
+    $scope.parametreMasterDTO = { id: null, titre: null, type: null, taux: null };
   
     // Fonction pour charger la liste des Parametres
     $scope.loadParametres = function () {
@@ -106,7 +106,7 @@ App.controller('parametreController', ['$scope','$http', function ($scope, $http
   
     $scope.valider = function () {
         // Vérifiez si les champs requis sont remplis
-        if (!$scope.parametreDTO.titre || !$scope.parametreDTO.type || !$scope.parametreDTO.valeur) {
+        if (!$scope.parametreDTO.titre || !$scope.parametreDTO.type || !$scope.parametreDTO.taux) {
             console.log("Veuillez remplir tous les champs obligatoires.");
             $scope.errorSwal("Veuillez remplir tous les champs obligatoires");
             return;

@@ -56,10 +56,10 @@ public class AbattementParametre {
     public void setParametre(Parametre parametre) {
         this.parametre = parametre;
     }
-    public String getValeur() {
+    public String getvaleur() {
         return valeur;
     }
-    public void setValeur(String valeur) {
+    public void setvaleur(String valeur) {
         this.valeur = valeur;
     }
     public Double getMontantAbattement() {
